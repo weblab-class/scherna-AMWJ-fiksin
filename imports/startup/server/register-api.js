@@ -2,3 +2,9 @@
 
 import '../../api/links/methods.js';
 import '../../api/links/server/publications.js';
+
+import '../../api/books/methods.js';
+import '../../api/books/server/publications.js';
+
+import '../../api/shelves/methods.js';
+import '../../api/shelves/server/publications.js';

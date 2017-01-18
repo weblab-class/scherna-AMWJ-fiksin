@@ -1,0 +1,63 @@
+<template name="addBook">
+    <div class="row" style="margin-top:70px;">
+        <div class="col-xs-8 col-xs-offset-2">
+            <div class="row">
+                <label for="shelfInput" class="col-xs-2">Shelf:</label>
+                <select id="shelfInput" class="col-xs-7">
+                    <option value="">(None)</option>
+                    {{#each shelves}}
+                        <option value="{{_id}}">{{name}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="well col-xs-12">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="active"><a href="#scan" role="tab" data-toggle="tab">Scan Barcode</a></li>
+                    <li><a href="#isbn" role="tab" data-toggle="tab">Enter ISBN</a></li>
+                    <li><a href="#title" role="tab" data-toggle="tab">Manual Entry</a></li>
+                </ul>
+                <div class='tab-content'>
+                    <div role="tabpanel" class="tab-pane active" id="scan">
+                        <h2>Add Book by Barcode</h2>
+                        <form id="addBookByBarcode">
+                            <div class="row form-group col-xs-10 col-xs-offset-1">
+                                <input type="file" class="form-control" id="barcodeInput">
+                            </div>
+                            <div class="row form-group col-xs-10 col-xs-offset-1">
+                                <input type="submit" class="form-control" value="Add Book">
+                            </div>
+                        </form>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="isbn">
+                        <h2>Add Book by ISBN</h2>
+                        <form id="addBookByISBN">
+                            <div class="row form-group col-xs-10 col-xs-offset-1">
+                                <label for="isbnInput">ISBN</label>
+                                <input type="text" class="form-control" id="isbnInput" placeholder="ISBN">
+                            </div>
+                            <div class="row form-group col-xs-10 col-xs-offset-1">
+                                <input type="submit" class="form-control" value="Add Book">
+                            </div>
+                        </form>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="title">
+                        <h2>Add Book by Title</h2>
+                        <form id="addBookByTitle">
+                            <div class="row form-group col-xs-10 col-xs-offset-1">
+                                <label for="titleInput">Title</label>
+                                <input type="text" class="form-control" id="titleInput" name="title" placeholder="Book Title">
+                            </div>
+                            <div class="row form-group col-xs-10 col-xs-offset-1">
+                                <label for="authorInput">Author</label>
+                                <input type="text" class="form-control" id="authorInput" name="author" placeholder="Author">
+                            </div>
+                            <div class="row form-group col-xs-10 col-xs-offset-1">
+                                <input type="submit" class="form-control" value="Add Book">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

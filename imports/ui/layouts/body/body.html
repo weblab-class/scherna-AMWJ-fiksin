@@ -1,3 +1,49 @@
 <template name="App_body">
-  {{> Template.dynamic template=main}}
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">XLibreX</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <div class="col-sm-8 pull-left">
+                    <form class="navbar-form" role="search">
+                        <div class="input-group mainSearchBar">
+                            <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="pull-left">
+                    <form class="navbar-form">
+                        <a href="{{pathForSearch}}" class="btn btn-default"><i class="glyphicon glyphicon-road"></i></a>
+                        <a href="{{pathForAddBook}}" class="btn btn-default">Add Book</a>
+                    </form>
+                </div>
+                <ul class="nav navbar-nav">
+                    {{#if currentUser}}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{currentUser.username}}<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{pathForLibrary}}">Library ({{librarySize}})</a></li>
+                            <li><a href="{{pathForProfile}}">Profile</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#" class="logoutButton">Logout</a></li>
+                        </ul>
+                    </li>
+                    {{else}}
+                        {{> loginButtons}}
+                    {{/if}}
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+    {{> Template.dynamic template=page}}
 </template>

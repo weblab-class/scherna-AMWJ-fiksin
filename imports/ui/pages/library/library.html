@@ -1,0 +1,48 @@
+<template name="library">
+    <div class="row">
+        <ul class="nav nav-pills col-xs-10 col-xs-offset-2" style="margin-top:70px">
+            <li class="active"><a href="{{pathForLibrary}}">Library</a></li>
+            <li><a href="{{pathForProfile}}">Profile</a></li>
+        </ul>
+    </div>
+    <div class="row" style="margin-top:70px;">
+        {{#with unsortedBooks}}
+            {{#if this.count}}
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div class="well shelf">
+                        <h2>Unsorted</h2>
+                        <ul>
+                            {{#each this}}
+                            <li>
+                                {{title}}
+                            </li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                </div>
+            {{/if}}
+        {{/with}}
+        {{#each shelves}}
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="well shelf">
+                <h2>{{name}}</h2>
+                <ul>
+                    {{#each booksOnShelf}}
+                        <li>
+                            {{title}}
+                        </li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+        {{/each}}
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="well">
+                <form class="newShelf">
+                    <input type="text" id="shelfName" name="shelfName" placeholder="New Shelf" />
+                    <input type="submit" class="glyphicon glyphicon-plus" />
+                </form>
+            </div>
+        </div>
+    </div>
+</template>
