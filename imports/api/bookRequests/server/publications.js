@@ -11,4 +11,4 @@ Meteor.publish('bookRequests.toYou', function () {
 
 Meteor.publish('bookRequests.holdsOnBook', function(bookId) {
     return BookRequests.find({ bookId }, { fields: { fromUserId: 0 } });
-}
+});
