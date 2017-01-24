@@ -8,7 +8,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">XLibreX</a>
+                <a class="navbar-brand" href="{{ pathForHome }}">XLibreX</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <div class="col-sm-8 pull-left">
@@ -45,5 +45,11 @@
             </div><!--/.nav-collapse -->
         </div>
     </nav>
-    {{> Template.dynamic template=page}}
+    <div id="mainBody" style="margin-top:72px;">
+        {{#if isLoggedIn}}
+            {{> Template.dynamic template=page}}
+        {{else}}
+            {{> loggedOut }}
+        {{/if}}
+    </div>
 </template>

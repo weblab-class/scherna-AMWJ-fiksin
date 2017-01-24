@@ -11,19 +11,19 @@ Template.library.onCreated(function () {
 
 Template.library.helpers({
     shelves() {
-        return Shelves.find();
+        return Shelves.find({ owner: FlowRouter.getParam("_id") });
     },
     booksOnShelf() {
-        return Books.find({ shelf: this._id });
+        return Books.find({ owner: FlowRouter.getParam("_id"), shelf: this._id });
     },
     unsortedBooks() {
-        return Books.find({ shelf: { $exists: false } });
+        return Books.find({ owner: FlowRouter.getParam("_id"), shelf: { $exists: false } });
     },
     pathForLibrary() {
-        return FlowRouter.path("App.library");
+        return FlowRouter.path("App.library", {_id: FlowRouter.getParam("_id") });
     },
     pathForProfile() {
-        return FlowRouter.path("App.profile");
+        return FlowRouter.path("App.profile", {_id: FlowRouter.getParam("_id") });
     },
 });
 

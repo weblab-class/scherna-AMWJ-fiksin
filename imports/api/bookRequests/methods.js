@@ -29,5 +29,8 @@ Meteor.methods({
             BookRequests.remove(requestToRemove);
             BookRequests.update({toUserId, bookId, priority: {$gt: currentPriority}}, {$inc: {priority: -1}}); //upgrades the priority of all lower-priority requests
         }
-    }
+    },
+    'bookRequests.lended'(fromUserId, toUserId, bookId) {
+        BookRequests.update({ fromUserId, bookId, toUserId: Meteor.userId() }, { $set: { status: 'lended' } });
+    },
 });

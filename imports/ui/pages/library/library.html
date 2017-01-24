@@ -1,11 +1,11 @@
 <template name="library">
     <div class="row">
-        <ul class="nav nav-pills col-xs-10 col-xs-offset-2" style="margin-top:70px">
+        <ul class="nav nav-pills col-xs-10 col-xs-offset-2">
             <li class="active"><a href="{{pathForLibrary}}">Library</a></li>
             <li><a href="{{pathForProfile}}">Profile</a></li>
         </ul>
     </div>
-    <div class="row" style="margin-top:70px;">
+    <div class="row">
         {{#with unsortedBooks}}
             {{#if this.count}}
                 <div class="col-xs-12 col-sm-6 col-md-4">

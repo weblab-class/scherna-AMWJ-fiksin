@@ -7,6 +7,13 @@ import '../../ui/pages/home/home.js';
 import '../../ui/pages/not-found/not-found.js';
 import '../../ui/pages/addBook/addBook.js';
 import '../../ui/pages/library/library.js';
+import '../../ui/pages/profile/profile.js';
+import '../../ui/pages/requests/requests.js';
+
+function verifyLoggedIn(context, redirect) {
+    console.log("hi");
+    console.log(context);
+}
 
 // Set up all routes in the app
 FlowRouter.route('/', {
@@ -16,16 +23,16 @@ FlowRouter.route('/', {
     },
 });
 
-FlowRouter.route('/library', {
+FlowRouter.route('/library/:_id', {
     name: 'App.library',
-    action() {
+    action(params) {
         BlazeLayout.render('App_body', { page: 'library' });
     },
 });
 
-FlowRouter.route('/profile', {
+FlowRouter.route('/profile/:_id', {
     name: 'App.profile',
-    action() {
+    action(params) {
         BlazeLayout.render('App_body', { page: 'profile' });
     },
 });
@@ -34,6 +41,13 @@ FlowRouter.route('/addBook', {
     name: 'App.addBook',
     action() {
         BlazeLayout.render('App_body', { page: 'addBook' });
+    },
+});
+
+FlowRouter.route('/requests', {
+    name: 'App.requests',
+    action() {
+        BlazeLayout.render('App_body', { page: 'requests' });
     },
 });
 

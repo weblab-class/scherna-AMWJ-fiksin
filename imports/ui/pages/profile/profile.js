@@ -1,39 +1,66 @@
-import { Books } from '/imports/api/books/books.js';
-import { Shelves } from '/imports/api/shelves/shelves.js';
 import { Meteor } from 'meteor/meteor';
-import './library.html';
+import './profile.html';
 
-Template.library.onCreated(function () {
-    Meteor.subscribe('shelves.all');
-    Meteor.subscribe('books.yours');
-    Meteor.subscribe('books.public');
+Template.profile.onCreated(function () {
+    Meteor.subscribe('userData');
 });
 
-Template.library.helpers({
-    shelves() {
-        return Shelves.find();
+Template.profile.helpers({
+    requestWeeks() {
+        if (Meteor.user()) {
+            return Meteor.user().requestWeeks || 3;
+        }
+        else {
+            return 0;
+        }
     },
-    booksOnShelf() {
-        return Books.find({ shelf: this._id });
+    longitude() {
+        if (Meteor.user()) {
+            return Meteor.user().longitude || 0;
+        }
+        else {
+            return 0;
+        }
     },
-    unsortedBooks() {
-        return Books.find({ shelf: { $exists: false } });
-    }
+    latitude() {
+        if (Meteor.user()) {
+            return Meteor.user().latitude || 0;
+        }
+        else {
+            return 0;
+        }
+    },
+    pathForLibrary() {
+        return FlowRouter.path("App.library", { _id: FlowRouter.getParam("_id") });
+    },
+    pathForProfile() {
+        return FlowRouter.path("App.profile", { _id: FlowRouter.getParam("_id") });
+    },
 });
 
-Template.library.events({
-    'submit .newShelf'(event) {
-
+Template.profile.events({
+    'submit #requestWeeksForm'(event) {
         const target = event.target;
-        const shelfName = target.shelfName;
- 
+        const requestWeeks = target.newValue;
         event.preventDefault();
-
-        Meteor.call('shelves.create', shelfName.value, function (error) {
-
-            if (!error) {
-                shelfName.value = "";
-            }
+        Meteor.call('userData.updateRequestWeeks', Number(requestWeeks.value));
+    },
+    'submit #longitudeForm'(event) {
+        const target = event.target;
+        const longitude = target.newValue;
+        event.preventDefault();
+        Meteor.call('userData.updateLongitude', Number(longitude.value));
+    },
+    'submit #latitudeForm'(event) {
+        const target = event.target;
+        const latitude = target.newValue;
+        event.preventDefault();
+        Meteor.call('userData.updateLatitude', Number(latitude.value));
+    },
+    'click .setLocation'(event) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            Meteor.call('userData.updateLongitude', Number(position.coords.longitude));
+            Meteor.call('userData.updateLatitude', Number(position.coords.latitude));
         });
     }
-})
+});

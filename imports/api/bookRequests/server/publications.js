@@ -8,3 +8,7 @@ Meteor.publish('bookRequests.fromYou', function () {
 Meteor.publish('bookRequests.toYou', function () {
     return BookRequests.find({toUserId: this.userId});
 });
+
+Meteor.publish('bookRequests.holdsOnBook', function(bookId) {
+    return BookRequests.find({ bookId }, { fields: { fromUserId: 0 } });
+}
