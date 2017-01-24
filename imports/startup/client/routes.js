@@ -7,6 +7,7 @@ import '../../ui/pages/home/home.js';
 import '../../ui/pages/not-found/not-found.js';
 import '../../ui/pages/addBook/addBook.js';
 import '../../ui/pages/library/library.js';
+import '../../ui/pages/search/search.js'
 
 // Set up all routes in the app
 FlowRouter.route('/', {
@@ -42,3 +43,10 @@ FlowRouter.notFound = {
     BlazeLayout.render('App_body', { page: 'App_notFound' });
   },
 };
+
+FlowRouter.route('/search', {
+    name: 'App.search',
+    action() {
+        BlazeLayout.render('App_body', { page: 'search' });
+    },
+});
