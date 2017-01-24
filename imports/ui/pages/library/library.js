@@ -3,6 +3,8 @@ import { Shelves } from '/imports/api/shelves/shelves.js';
 import { Meteor } from 'meteor/meteor';
 import './library.html';
 
+import '../../components/bookModal/bookModal.js';
+
 Template.library.onCreated(function () {
     Meteor.subscribe('shelves.all');
     Meteor.subscribe('books.yours');
