@@ -1,0 +1,22 @@
+<template name="requests">
+    <h1>Requests To Borrow</h1>
+    <table class="table-hover">
+        {{#each requestsToYou}}
+        <tr>
+            <td>
+                {{fromUserId}}
+            </td>
+        </tr>
+        {{/each}}
+    </table>
+    <h1>Your Requests</h1>
+    <table class="table-hover">
+        {{#each requestsFromYou}}
+        <tr>
+            <td>
+                {{fromUserId}}
+            </td>
+        </tr>
+        {{/each}}
+    </table>
+</template>

@@ -7,23 +7,30 @@ Template.library.onCreated(function () {
     Meteor.subscribe('shelves.all');
     Meteor.subscribe('books.yours');
     Meteor.subscribe('books.public');
+    Meteor.subscribe('userData');
 });
 
 Template.library.helpers({
+    userExists() {
+        return Meteor.users.findOne(FlowRouter.getParam("_id"));
+    },
+    allowEdits() {
+        return Meteor.userId() && Meteor.userId() == FlowRouter.getParam("_id");
+    },
     shelves() {
-        return Shelves.find();
+        return Shelves.find({ owner: FlowRouter.getParam("_id") });
     },
     booksOnShelf() {
-        return Books.find({ shelf: this._id });
+        return Books.find({ owner: FlowRouter.getParam("_id"), shelf: this._id });
     },
     unsortedBooks() {
-        return Books.find({ shelf: { $exists: false } });
+        return Books.find({ owner: FlowRouter.getParam("_id"), shelf: { $exists: false } });
     },
     pathForLibrary() {
-        return FlowRouter.path("App.library");
+        return FlowRouter.path("App.library", {_id: FlowRouter.getParam("_id") });
     },
     pathForProfile() {
-        return FlowRouter.path("App.profile");
+        return FlowRouter.path("App.profile", {_id: FlowRouter.getParam("_id") });
     },
 });
 
@@ -32,7 +39,7 @@ Template.library.events({
 
         const target = event.target;
         const shelfName = target.shelfName;
- 
+
         event.preventDefault();
 
         Meteor.call('shelves.create', shelfName.value, function (error) {
@@ -41,5 +48,11 @@ Template.library.events({
                 shelfName.value = "";
             }
         });
+    },
+    'click .deleteShelfButton'(event) {
+        Meteor.call('shelves.delete', this._id);
+    },
+    'click .bookTitle'(event) {
+        Modal
     }
 })
