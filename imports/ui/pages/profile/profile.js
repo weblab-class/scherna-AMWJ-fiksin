@@ -6,9 +6,12 @@ Template.profile.onCreated(function () {
 });
 
 Template.profile.helpers({
+    userExists() {
+        return Meteor.users.findOne(FlowRouter.getParam("_id"));
+    },
     requestWeeks() {
         if (Meteor.user()) {
-            return Meteor.user().requestWeeks || 3;
+            return Meteor.users.findOne(FlowRouter.getParam("_id")).requestWeeks || 3;
         }
         else {
             return 0;
@@ -16,7 +19,7 @@ Template.profile.helpers({
     },
     longitude() {
         if (Meteor.user()) {
-            return Meteor.user().longitude || 0;
+            return Meteor.users.findOne(FlowRouter.getParam("_id")).longitude || 0;
         }
         else {
             return 0;
@@ -24,7 +27,7 @@ Template.profile.helpers({
     },
     latitude() {
         if (Meteor.user()) {
-            return Meteor.user().latitude || 0;
+            return Meteor.users.findOne(FlowRouter.getParam("_id")).latitude || 0;
         }
         else {
             return 0;
@@ -36,6 +39,9 @@ Template.profile.helpers({
     pathForProfile() {
         return FlowRouter.path("App.profile", { _id: FlowRouter.getParam("_id") });
     },
+    allowEdits() {
+        return Meteor.userId() && Meteor.userId() == FlowRouter.getParam("_id");
+    }
 });
 
 Template.profile.events({

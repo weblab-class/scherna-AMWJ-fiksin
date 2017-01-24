@@ -7,9 +7,16 @@ Template.library.onCreated(function () {
     Meteor.subscribe('shelves.all');
     Meteor.subscribe('books.yours');
     Meteor.subscribe('books.public');
+    Meteor.subscribe('userData');
 });
 
 Template.library.helpers({
+    userExists() {
+        return Meteor.users.findOne(FlowRouter.getParam("_id"));
+    },
+    allowEdits() {
+        return Meteor.userId() && Meteor.userId() == FlowRouter.getParam("_id");
+    },
     shelves() {
         return Shelves.find({ owner: FlowRouter.getParam("_id") });
     },
@@ -32,7 +39,7 @@ Template.library.events({
 
         const target = event.target;
         const shelfName = target.shelfName;
- 
+
         event.preventDefault();
 
         Meteor.call('shelves.create', shelfName.value, function (error) {
@@ -41,5 +48,11 @@ Template.library.events({
                 shelfName.value = "";
             }
         });
+    },
+    'click .deleteShelfButton'(event) {
+        Meteor.call('shelves.delete', this._id);
+    },
+    'click .bookTitle'(event) {
+        Modal
     }
 })

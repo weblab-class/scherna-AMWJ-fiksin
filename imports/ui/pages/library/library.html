@@ -1,4 +1,5 @@
 <template name="library">
+    {{#if userExists}}
     <div class="row">
         <ul class="nav nav-pills col-xs-10 col-xs-offset-2">
             <li class="active"><a href="{{pathForLibrary}}">Library</a></li>
@@ -28,14 +29,19 @@
                 <h2>{{name}}</h2>
                 <ul>
                     {{#each booksOnShelf}}
-                        <li>
+                        <li class="bookTitle">
                             {{title}}
                         </li>
+                    {{else}}
+                        {{#if allowEdits}}
+                            This shelf is empty. <button class="deleteShelfButton">Delete Shelf</button>
+                        {{/if}}
                     {{/each}}
                 </ul>
             </div>
         </div>
         {{/each}}
+        {{#if allowEdits}}
         <div class="col-xs-12 col-sm-6 col-md-4">
             <div class="well">
                 <form class="newShelf">
@@ -44,5 +50,9 @@
                 </form>
             </div>
         </div>
+        {{/if}}
     </div>
+    {{else}}
+        This user does not exist.
+    {{/if}}
 </template>

@@ -1,4 +1,5 @@
 <template name="profile">
+    {{#if userExists}}
     <div class="row">
         <ul class="nav nav-pills col-xs-10 col-xs-offset-2">
             <li><a href="{{pathForLibrary}}">Library</a></li>
@@ -6,24 +7,37 @@
         </ul>
     </div>
     <div class="row">
-        <form id="requestWeeksForm">
-            <div class="col-xs-offset-2 col-xs-8">
-                Current weeks a user may borrow books: {{requestWeeks}}. New value: <input name="newValue" type="number" /> <input type="submit" />
-            </div>
-        </form>
+        <div class="col-xs-offset-2 col-xs-8">
+            Current weeks a user may borrow books: {{requestWeeks}}. 
+            {{#if allowEdits}}
+            <form id="requestWeeksForm">
+                New value: <input name="newValue" type="number" /> <input type="submit" />
+            </form>
+            {{/if}}
+        </div>
     </div>
     <div class="row">
-        <form id="longitudeForm">
-            <div class="col-xs-offset-2 col-xs-8">
-                Longitude: {{longitude}}. New value: <input name="newValue" type="text" /> <input type="submit" />
-            </div>
-        </form>
+        <div class="col-xs-offset-2 col-xs-8">
+            Longitude: {{longitude}}.
+            {{#if allowEditProfile}}
+            <form id="longitudeForm">
+                New value: <input name="newValue" type="text" /> <input type="submit" />
+            </form>
+            {{/if}}
+        </div>
     </div>
     <div class="row">
-        <form id="latitudeForm">
-            <div class="col-xs-offset-2 col-xs-8">
-                Latitude: {{latitude}}. New value: <input name="newValue" type="text" /> <input type="submit" />
-            </div>
-        </form> <button class="setLocation">Set Location to Here</button>
+        <div class="col-xs-offset-2 col-xs-8">
+            Latitude: {{latitude}}.
+            {{#if allowEditProfile}}
+            <form id="latitudeForm">
+                New value: <input name="newValue" type="text" /> <input type="submit" />
+            </form>
+            <button class="setLocation">Set Location to Here</button>
+            {{/if}}
+        </div>
     </div>
+    {{else}}
+        This user does not exist.
+    {{/if}}
 </template>
