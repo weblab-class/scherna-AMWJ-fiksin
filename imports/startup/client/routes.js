@@ -10,6 +10,8 @@ import '../../ui/pages/library/library.js';
 import '../../ui/pages/search/search.js';
 import '../../ui/pages/profile/profile.js';
 import '../../ui/pages/requests/requests.js';
+import '../../ui/pages/messages/messages.js';
+import '../../ui/pages/conversation/conversation.js';
 
 function verifyLoggedIn(context, redirect) {
     console.log("hi");
@@ -64,5 +66,19 @@ FlowRouter.route('/search', {
     action() {
         BlazeLayout.render('App_body', { page: 'search' });
     },
+});
+
+FlowRouter.route('/messages', {
+    name: 'App.messages',
+    action() {
+        BlazeLayout.render('App_body', { page: 'messages'});
+    }
+});
+
+FlowRouter.route('/conversation/:_id', {
+    name: 'App.conversation',
+    action(params) {
+        BlazeLayout.render('App_body', {page: 'conversation'});
+    }
 });
 

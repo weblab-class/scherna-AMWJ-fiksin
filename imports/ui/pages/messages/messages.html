@@ -1,0 +1,18 @@
+<template name="messages">
+    {{#if currentUser}}
+        <div class="container">
+            {{#each currentUser.conversations}}
+                <div class="conversation row well">
+                    {{#with lastMessage}}
+                        <div class="col-xs-1">
+                            <h4>{{user.username}}:</h4>
+                        </div>
+                        <div class="col-xs-11">
+                            <h4>{{body}}</h4>
+                        </div>
+                    {{/with}}
+                </div>
+            {{/each}}
+        </div>
+    {{/if}}
+</template>

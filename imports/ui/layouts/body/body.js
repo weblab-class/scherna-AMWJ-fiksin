@@ -31,7 +31,10 @@ Template.App_body.helpers({
     },
     pathForRequests() {
         return FlowRouter.path("App.requests");
-    }
+    },
+    pathForMessages() {
+        return FlowRouter.path("App.messages");
+    },
 });
 
 Template.App_body.events({

@@ -1,0 +1,33 @@
+<template name="conversation">
+    {{#if currentUser}}
+    <div class="container">
+        {{#with currentConversation}}
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    {{#each participants}}
+                        <h4>Conversation with {{user.username}}</h4>
+                    {{/each}}
+                </div>
+                {{#each messages}}
+                    <div class="row panel-body">
+                        <div class="col-xs-1">
+                            <h4>{{user.username}}:</h4>
+                        </div>
+                        <div class="col-xs-11">
+                            <h4>{{body}}</h4>
+                        </div>
+                    </div>
+                {{/each}}
+                <form class="newMessage">
+                    <div class="panel-footer input-group input-group-lg">
+                        <input type="text" name="message" placeholder="Type a message..." class="form-control">
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-send"></span></button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        {{/with}}
+        </div>
+    {{/if}}
+</template>
