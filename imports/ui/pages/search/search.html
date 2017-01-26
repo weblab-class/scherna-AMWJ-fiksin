@@ -48,56 +48,22 @@
         </div>
       
       <div class="container">
-    <div class="row">
-        <div class="col-xs-6 col-sm-6 col-md-2">
-            <div class="col-item">
-                <div class="post-img-content">
-                    <img src="http://placehold.it/170x200" class="img-responsive" alt="a" />
-                </div> 
-                <h5 class="text-center">(Title)</h5>
-              <p class="text-center" style="font-size:12px; color:#d9534f;">(Author)</p>
-              <button class="btn btn-xs center-block">Request</button>
-              &nbsp;
-                    </div>
+        <div class="row">
+            {{#each searchResults}}
+            <div class="col-xs-6 col-sm-6 col-md-2">
+                <div class="col-item">
+                    <div class="post-img-content">
+                        <img src="http://placehold.it/170x200" class="img-responsive" alt="a" />
+                    </div> 
+                    <h5 class="text-center">{{title}}</h5>
+                  <p class="text-center" style="font-size:12px; color:#d9534f;">{{author}}</p>
+                  <button class="btn btn-xs center-block">Request</button>
+                  &nbsp;
+                </div>
             </div>
-            
-        <div class="col-xs-6 col-sm-6 col-md-2">
-            <div class="col-item">
-                <div class="post-img-content">
-                    <img src="http://placehold.it/170x200" class="img-responsive" alt="a" />
-                </div> 
-                <h5 class="text-center">(Title)</h5>
-              <p class="text-center" style="font-size:12px; color:#d9534f;">(Author)</p>
-              <button class="btn btn-xs center-block">Request</button>
-              &nbsp;
-                    </div>
-            </div>
-        <div class="col-xs-6 col-sm-6 col-md-2">
-            <div class="col-item">
-                <div class="post-img-content">
-                    <img src="http://placehold.it/170x200" class="img-responsive" alt="a" />
-                </div> 
-                <h5 class="text-center">(Title)</h5>
-              <p class="text-center" style="font-size:12px; color:#d9534f;">(Author)</p>
-              <button class="btn btn-xs center-block">Request</button>
-              &nbsp;
-                    </div>
-            </div>
-      <div class="col-xs-6 col-sm-6 col-md-2">
-            <div class="col-item">
-                <div class="post-img-content">
-                    <img src="http://placehold.it/170x200" class="img-responsive" alt="a" />
-                </div> 
-              <h5 class="text-center">(Title)</h5>
-              <p class="text-center" style="font-size:12px; color:#d9534f;">(Author)</p>
-              <button class="btn btn-xs center-block">Request</button>
-              &nbsp;
-                    </div>
-            </div>
+            {{/each}}
         </div>
-        </div>
- </div>
-
+      </div>
     </div>
-
+  </div>
 </template>
