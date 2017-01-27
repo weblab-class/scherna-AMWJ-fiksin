@@ -1,0 +1,25 @@
+.nav-pills > li.active > a{
+    background-color: #d9534f;
+}
+
+.nav-pills > li.active > a:hover{
+  background-color: #c9302c;
+}
+    
+.nav-pills > li > a{
+  color: #8a8a8a;
+}
+
+.btn-primary {
+    background-color:#d9534f;
+    border-color:#d9534f;
+}
+
+.btn-primary:hover{
+	background-color:#c9302c;
+  	border-color:#c9302c;
+}
+
+.btn-default:hover{
+    border-color:#e6e6e6;
+}

@@ -1,0 +1,99 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700);
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css');
+/*http://codepen.io/drehimself/pen/KdXwxR?utm_source=bypeople
+http://nicolasgallagher.com/pure-css-speech-bubbles/demo/*/
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+.chat .chat-history {
+  padding: 30px 30px 20px;
+  border-bottom: 2px solid white;
+}
+.chat .chat-history .message-data {
+  margin-bottom: 15px;
+}
+.chat .chat-history .message-data-time {
+  color: #a8aab1;
+  padding-left: 6px;
+}
+.chat .chat-history .message {
+  color: white;
+  padding: 18px 20px;
+  line-height: 26px;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-bottom: 30px;
+  width: 90%;
+  position: relative;
+}
+.chat .chat-history .message:after {
+content: "";
+    position: absolute;
+    top: -15px;
+    left: 20px;
+    border-width: 0 15px 15px;
+    border-style: solid;
+    border-color: #f1f1f1 transparent;
+    display: block;
+    width: 0;
+}
+.chat .chat-history .you-message {
+  background: #f1f1f1;
+  color:#8a8a8a;
+}
+.chat .chat-history .me-message {
+  background: #d9534f;
+}
+.chat .chat-history .me-message:after {
+  border-color: #d9534f transparent;
+    right: 20px;
+    top: -15px;
+    left: auto;
+    bottom:auto;
+}
+.chat .chat-message {
+  padding: 30px;
+}
+.chat .chat-message .fa-file-o, .chat .chat-message .fa-file-image-o {
+  font-size: 16px;
+  color: gray;
+  cursor: pointer;
+}
+
+.chat-ul li{
+    list-style-type: none;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.float-right {
+  float: right;
+}
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+.you {
+  color: #f1f1f1;
+}
+
+.me {
+  color: #d9534f;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Raleway",sans-serif;
+    color: #003366;
+}

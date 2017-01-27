@@ -6,9 +6,9 @@
             <li class="active"><a href="{{pathForRequests}}">Requests</a></li>
         </ul>
     </div>
-    <div class="row">
+    <div class="row" style="text-align: center">
         <div class="col-xs-6">
-            <h1>Requests To Borrow</h1>
+            <h4>Requests To Borrow</h4>
             <table class="table-hover">
                 {{#each requestsToYou}}
                 <tr>
@@ -18,8 +18,8 @@
                                 <a href="{{pathForProfileFrom}}">{{requestToUser}}</a> requested {{requestTitle}}.
                             </div>
                             <div class="panel-footer">
-                                <button class="btn btn-default deleteRequest">Delete</button>
-                                <button class="btn btn-primary acceptRequest">Accept</button>
+                                <button class="btn btn-default deleteRequest" style="color:#8a8a8a">Delete</button>
+                                <button class="btn btn-primary acceptRequest" style="color:#ffffff">Accept</button>
                             </div>
                         </div>                        
                     </td>
@@ -28,7 +28,7 @@
             </table>
         </div>
         <div class="col-xs-6">
-            <h1>Your Requests</h1>
+            <h4>Your Requests</h4>
             <table class="table-hover">
                 {{#each requestsFromYou}}
                 <tr>

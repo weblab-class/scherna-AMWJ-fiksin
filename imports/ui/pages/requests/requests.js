@@ -2,6 +2,7 @@ import { BookRequests } from '/imports/api/bookRequests/bookRequests.js';
 import { Books } from '/imports/api/books/books.js';
 import { Meteor } from 'meteor/meteor';
 import './requests.html';
+import './requests.css'
 
 Template.requests.onCreated(function () {
     Meteor.subscribe('bookRequests.fromYou');

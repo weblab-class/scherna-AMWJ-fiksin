@@ -14,7 +14,7 @@
             Current weeks a user may borrow books: {{requestWeeks}}. 
             {{#if isMyAccount}}
             <form id="requestWeeksForm">
-                New value: <input name="newValue" type="number" /> <input type="submit" />
+                New value: <input name="newValue" type="text"> <input type="submit" style="background-color:#e1e1e1; border:0; border-radius:4px">
             </form>
             {{/if}}
         </div>
@@ -24,7 +24,7 @@
             Longitude: {{longitude}}.
             {{#if isMyAccount}}
             <form id="longitudeForm">
-                New value: <input name="newValue" type="text" /> <input type="submit" />
+                New value: <input name="newValue" type="text"> <input type="submit" style="background-color:#e1e1e1; border:0; border-radius:4px">
             </form>
             {{/if}}
         </div>
@@ -34,9 +34,10 @@
             Latitude: {{latitude}}.
             {{#if isMyAccount}}
             <form id="latitudeForm">
-                New value: <input name="newValue" type="text" /> <input type="submit" />
+                New value: <input name="newValue" type="text"> <input type="submit" style="background-color:#e1e1e1; border:0; border-radius:4px">
             </form>
-            <button class="setLocation">Set Location to Here</button>
+            <br>
+            <button class="setLocation" style="background-color:#eeeeee; border:0; border-radius:4px">Set Location to Here</button>
             {{/if}}
         </div>
     </div>
