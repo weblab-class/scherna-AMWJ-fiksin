@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 
 import './conversation.html';
+import './conversation.css';
 
 Template.conversation.onCreated(function() {
     this.autorun(function() {
@@ -11,6 +12,9 @@ Template.conversation.onCreated(function() {
 Template.conversation.helpers({
     currentConversation() {
         return Template.instance().currentConversation;
+    },
+    isYou() {
+        return this.user().username === Meteor.user().username;
     }
 });
 

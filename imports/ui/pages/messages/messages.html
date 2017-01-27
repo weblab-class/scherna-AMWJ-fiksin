@@ -1,24 +1,25 @@
 <template name="messages">
-<div class="container clearfix">
-    <div class="chat">   
-      <div class="chat-history">
-        <ul class="chat-ul">
-            <div class="message-data">
-              <span class="message-data-name"><i class="fa fa-circle you"></i>"Some User"</span>
-            </div>
-          <div class="message you-message">(Message from some user)</div>
-          
-          <li class="clearfix">
-            <div class="message-data align-right">
-              <span class="message-data-name">User (You)</span> <i class="fa fa-circle me"></i>
-            </div>
-            <div class="message me-message float-right">(User response)</div>
-          </li>
-      
-        </ul>
-        
-      </div> <!-- end chat-history -->
-      
-    </div> <!-- end chat -->
-  </div>
+  {{#if currentUser}}
+    <div class="container">
+      {{#each currentUser.conversations}}
+        <div class="conversation row panel panel-default">
+          <div class="panel-heading">
+            {{#each participants}}
+                <h4>{{user.username}}</h4>
+            {{/each}}
+          </div>
+          <div class="panel-body">
+            {{#with lastMessage}}
+              <div class="col-xs-1">
+                  <h4>{{user.username}}:</h4>
+              </div>
+              <div class="col-xs-11">
+                  <h4>{{body}}</h4>
+              </div>
+            {{/with}}
+          </div>  
+        </div>
+      {{/each}}
+    </div>
+  {{/if}}
 </template>
