@@ -1,22 +1,52 @@
 <template name="requests">
-    <h1>Requests To Borrow</h1>
-    <table class="table-hover">
-        {{#each requestsToYou}}
-        <tr>
-            <td>
-                {{fromUserId}}
-            </td>
-        </tr>
-        {{/each}}
-    </table>
-    <h1>Your Requests</h1>
-    <table class="table-hover">
-        {{#each requestsFromYou}}
-        <tr>
-            <td>
-                {{fromUserId}}
-            </td>
-        </tr>
-        {{/each}}
-    </table>
+    <div class="row">
+        <ul class="nav nav-pills col-xs-10 col-xs-offset-2">
+            <li><a href="{{pathForLibrary}}">Library</a></li>
+            <li><a href="{{pathForProfile}}">Profile</a></li>
+            <li class="active"><a href="{{pathForRequests}}">Requests</a></li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <h1>Requests To Borrow</h1>
+            <table class="table-hover">
+                {{#each requestsToYou}}
+                <tr>
+                    <td>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <a href="{{pathForProfileFrom}}">{{requestToUser}}</a> requested {{requestTitle}}.
+                            </div>
+                            <div class="panel-footer">
+                                <button class="btn btn-default deleteRequest">Delete</button>
+                                <button class="btn btn-primary acceptRequest">Accept</button>
+                            </div>
+                        </div>                        
+                    </td>
+                </tr>
+                {{/each}}
+            </table>
+        </div>
+        <div class="col-xs-6">
+            <h1>Your Requests</h1>
+            <table class="table-hover">
+                {{#each requestsFromYou}}
+                <tr>
+                    <td>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                You requested {{requestTitle}} from <a href="{{pathForProfileTo}}">{{requestToUser}}</a>.
+                                {{#if requestAccepted}}
+                                    Accepted.
+                                {{else}}
+                                    Awaiting acceptance.
+                                {{/if}}
+                            </div>
+                        </div>                        
+                    </td>
+                </tr>
+                {{/each}}
+            </table>
+        </div>
+    </div>
 </template>

@@ -16,7 +16,7 @@ Template.library.helpers({
     userExists() {
         return Meteor.users.findOne(FlowRouter.getParam("_id"));
     },
-    allowEdits() {
+    isMyAccount() {
         return Meteor.userId() && Meteor.userId() == FlowRouter.getParam("_id");
     },
     shelves() {
@@ -33,6 +33,9 @@ Template.library.helpers({
     },
     pathForProfile() {
         return FlowRouter.path("App.profile", {_id: FlowRouter.getParam("_id") });
+    },
+    pathForRequests() {
+        return FlowRouter.path("App.requests");
     },
 });
 

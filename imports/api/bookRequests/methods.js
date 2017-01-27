@@ -4,11 +4,15 @@ import { BookRequests } from './bookRequests.js';
 import { Books } from '../books/books.js';
 
 Meteor.methods({
-    'bookRequests.create'(toUserId, bookId, status, priority){
+    'bookRequests.create'(toUserId, bookId){
         const fromUserId = Meteor.userId();
         const book = Books.findOne({_id: bookId, owner: toUserId});
         const status = 'requested' //status can be 'requested', 'accepted'
-        const priority = BookRequests.findOne({toUserId, bookId}, {sort: {priority: -1}})['priority'] + 1; //request priority is 1 higher than previous highest (last on waiting line)
+        const lastRequestOnBook = BookRequests.findOne({ toUserId, bookId }, { sort: { priority: -1 } });
+        var priority = 0;
+        if (lastRequestOnBook) {
+            priority = lastRequestOnBook['priority'] + 1; //request priority is 1 higher than previous highest (last on waiting line)
+        }
         if (book) {
             BookRequests.insert({
                 fromUserId,
@@ -19,18 +23,19 @@ Meteor.methods({
             });
         }
     },
-    'bookRequests.accept'(fromUserId, bookId) {
-        BookRequests.update({fromUserId, bookId, toUserId: Meteor.userId()}, {$set: {status: 'accepted'}});
+    'bookRequests.accept'(bookRequestId) {
+        BookRequests.update(bookRequestId, {$set: {status: 'accepted'}});
     },
-    'bookRequests.delete'(fromUserId, toUserId, bookId) {
-        if (fromUserId === Meteor.userId() || toUserId === Meteor.userId()) {
-            const requestToRemove = BookRequests.findOne({fromUserId, toUserId, bookId});
+    'bookRequests.delete'(bookRequestId) {
+        const requestToRemove = BookRequests.findOne(bookRequestId);
+        if (requestToRemove.fromUserId === Meteor.userId() || requestToRemove.toUserId === Meteor.userId()) {
             const currentPriority = requestToRemove.priority;
+            const bookId = requestToRemove.bookId;
             BookRequests.remove(requestToRemove);
-            BookRequests.update({toUserId, bookId, priority: {$gt: currentPriority}}, {$inc: {priority: -1}}); //upgrades the priority of all lower-priority requests
+            BookRequests.update({bookId, priority: {$gt: currentPriority}}, {$inc: {priority: -1}}); //upgrades the priority of all lower-priority requests
         }
     },
-    'bookRequests.lended'(fromUserId, toUserId, bookId) {
-        BookRequests.update({ fromUserId, bookId, toUserId: Meteor.userId() }, { $set: { status: 'lended' } });
+    'bookRequests.lended'(bookRequestId) {
+        BookRequests.update(bookRequestId, { $set: { status: 'lended' } });
     },
 });

@@ -4,6 +4,9 @@
         <ul class="nav nav-pills col-xs-10 col-xs-offset-2">
             <li class="active"><a href="{{pathForLibrary}}">Library</a></li>
             <li><a href="{{pathForProfile}}">Profile</a></li>
+            {{#if isMyAccount}}
+                <li><a href="{{pathForRequests}}">Requests</a></li>
+            {{/if}}
         </ul>
     </div>
     <div class="row">
@@ -33,7 +36,7 @@
                             {{title}}
                         </li>
                     {{else}}
-                        {{#if allowEdits}}
+                        {{#if isMyAccount}}
                             This shelf is empty. <button class="deleteShelfButton">Delete Shelf</button>
                         {{/if}}
                     {{/each}}
@@ -41,7 +44,7 @@
             </div>
         </div>
         {{/each}}
-        {{#if allowEdits}}
+        {{#if isMyAccount}}
         <div class="col-xs-12 col-sm-6 col-md-4">
             <div class="well">
                 <form class="newShelf">

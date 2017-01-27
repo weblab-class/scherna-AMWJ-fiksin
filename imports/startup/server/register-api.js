@@ -11,3 +11,6 @@ import '../../api/shelves/server/publications.js';
 
 import '../../api/users/methods.js';
 import '../../api/users/server/publications.js';
+
+import '../../api/bookRequests/methods.js';
+import '../../api/bookRequests/server/publications.js';

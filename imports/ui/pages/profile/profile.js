@@ -39,7 +39,10 @@ Template.profile.helpers({
     pathForProfile() {
         return FlowRouter.path("App.profile", { _id: FlowRouter.getParam("_id") });
     },
-    allowEdits() {
+    pathForRequests() {
+        return FlowRouter.path("App.requests");
+    },
+    isMyAccount() {
         return Meteor.userId() && Meteor.userId() == FlowRouter.getParam("_id");
     }
 });
