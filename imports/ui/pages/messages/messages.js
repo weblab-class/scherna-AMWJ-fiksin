@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 
 import './messages.html';
+import './messages.css'
 
 Template.messages.onCreated(function() {
 
