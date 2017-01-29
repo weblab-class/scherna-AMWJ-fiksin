@@ -1,4 +1,46 @@
 <template name="home">
-  {{> hello}}
-  {{> info}}
+<div class="parallax">
+    <section class="bg-1" style="color: white; margin-top: -20px">
+        <hr style="height: 200px">
+        <div class="well" style="margin: 0 auto; width:450px; height: 100px; opacity: 0.8; border-radius: 10px">
+        <h1 style="text-align: center; margin-top:-10px; font-family: 'Nunito', sans-serif; color: #333333">Biblios</h1>
+        <p class="lead" style="text-align: center">your new favorite book is just a click away</p>
+        </div>
+    </section>
+</div>
+<!-- more info -->
+<section class="bg-primary" id="about" style="background-color: white">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+              <br>   
+              <h2 class="section-heading" style="font-family: 'Nunito', sans-serif; color: #333333">Expand your literary horizon.</h2>
+
+            </div>
+        </div>
+        <!-- three columns -->
+        <div class="row row-centered">
+            <div class="col-md-3 col-centered">
+                 <h3 class="section-heading" style="text-align:center; color: #333333"><i class="glyphicon glyphicon-search"></i></h3>
+
+                <hr class="light">
+                <p class="text-faded" style="text-align:center">Explore hundreds of titles available nearby</p>
+            </div>
+            <div class="col-md-3 col-centered">
+                 <h3 class="section-heading" style="text-align:center; color: #333333"><i class="glyphicon glyphicon-book"></i></h3>
+
+                <hr class="light">
+                <p class="text-faded" style="text-align:center">Add books to your personal library and customize your shelves</p>
+            </div>
+            <div class="col-md-3 col-centered">
+                 <h3 class="section-heading" style="text-align:center; color: #333333"><i class="glyphicon glyphicon-comment"></i></h3>
+
+                <hr class="light">
+                <p class="text-faded" style="text-align:center">Exchange books with other people securely and easily</p>
+            </div>
+        </div>
+      <br>
+      <br>
+    </div>
+</section>
 </template>
