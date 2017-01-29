@@ -8,7 +8,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ pathForHome }}">XLibreX</a>
+                <a class="navbar-brand" href="{{ pathForHome }}">Biblios</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <div class="col-sm-8 pull-left">
@@ -27,10 +27,10 @@
                         <a href="{{pathForAddBook}}" class="btn btn-default">Add Book</a>
                     </form>
                 </div>
-                <ul class="nav navbar-nav">
+                <div class="nav navbar-form pull-left">
                     {{#if currentUser}}
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{currentUser.username}}<span class="caret"></span></a>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-toggle btn" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{currentUser.username}}<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{pathForLibrary}}">Library ({{librarySize}})</a></li>
                             <li><a href="{{pathForProfile}}">Profile</a></li>
@@ -38,11 +38,13 @@
                             <li role="separator" class="divider"></li>
                             <li><a href="#" class="logoutButton">Logout</a></li>
                         </ul>
-                    </li>
+                    </div>
                     {{else}}
-                        {{> loginButtons}}
+                        <div class="btn">
+                            {{> loginButtons}}
+                        </div>
                     {{/if}}
-                </ul>
+                </div>
             </div><!--/.nav-collapse -->
         </div>
     </nav>
