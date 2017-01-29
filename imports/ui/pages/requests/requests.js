@@ -48,6 +48,10 @@ Template.requests.helpers({
 Template.requests.events({
     'click .acceptRequest'(event) {
         Meteor.call('bookRequests.accept', this._id);
+        const conversation = new Conversation().save();
+        const fromUser = Meteor.users.findOne(this.fromUserId);
+        conversation.addParticipant(fromUser);
+        conversation.sendMessage("Your request for " + Books.findOne(this.bookId).title + " has been accepted.");
     },
     'click .deleteRequest'(event) {
         Meteor.call('bookRequests.delete', this._id);
