@@ -1,4 +1,11 @@
 <template name="library">
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+});
+</script>
+
     {{#if userExists}}
     <div class="row">
         <ul class="nav nav-pills col-xs-10 col-xs-offset-2">
@@ -9,12 +16,13 @@
             {{/if}}
         </ul>
     </div>
-    <div class="row">
+    <br>
+    <div class="row row-centered">
         {{#with unsortedBooks}}
             {{#if this.count}}
                 <div class="col-xs-12 col-sm-6 col-md-4">
-                    <div class="well shelf">
-                        <h2>Unsorted</h2>
+                    <div class="well shelf" style="background-color: #F8F8F8">
+                        <h4 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; margin-top: 0px">Unsorted</h4>
                         <ul>
                             {{#each this}}
                             <li>
@@ -28,13 +36,16 @@
         {{/with}}
         {{#each shelves}}
         <div class="col-xs-12 col-sm-6 col-md-4">
-            <div class="well shelf">
-                <h2>{{name}}</h2>
+            <div class="well shelf" style="background-color: #F8F8F8">
+                <h4 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; margin-top: 0px">{{name}}</h4>
                 <ul>
+                    
                     {{#each booksOnShelf}}
-                        <li class="bookTitle">
-                            {{title}}
-                        </li>
+                        <span data-toggle="modal" data-target="#id">
+                            <a><button class="bookTitle" data-toggle="tooltip" data-placement="bottom" title="{{title}}">
+                        </button></a>
+                        </span>
+                        
                     {{else}}
                         {{#if isMyAccount}}
                             This shelf is empty. <button class="deleteShelfButton">Delete Shelf</button>
@@ -48,8 +59,8 @@
         <div class="col-xs-12 col-sm-6 col-md-4">
             <div class="well">
                 <form class="newShelf">
-                    <input type="text" id="shelfName" name="shelfName" placeholder="New Shelf" />
-                    <input type="submit" class="glyphicon glyphicon-plus" />
+                    <input type="text" id="shelfName" name="shelfName" placeholder="New Shelf" style="border-color: #ebebeb; border-radius: 5px"/>
+                    <input type="submit" class="glyphicon glyphicon-plus" style="font-family: 'Nunito', sans-serif; color: #333333"/>
                 </form>
             </div>
         </div>

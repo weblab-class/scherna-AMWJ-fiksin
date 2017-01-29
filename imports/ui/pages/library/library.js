@@ -2,6 +2,7 @@ import { Books } from '/imports/api/books/books.js';
 import { Shelves } from '/imports/api/shelves/shelves.js';
 import { Meteor } from 'meteor/meteor';
 import './library.html';
+import './library.css';
 
 import '../../components/bookModal/bookModal.js';
 
@@ -61,3 +62,4 @@ Template.library.events({
         Modal
     }
 })
+

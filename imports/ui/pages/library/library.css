@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito:300,400');
+
 .nav-pills > li.active > a{
     background-color: #d9534f;
 }
@@ -8,4 +10,78 @@
     
 .nav-pills > li > a{
   color: #8a8a8a;
+}
+
+.button {
+    border-radius: 5px;
+    border-color: #ebebeb;
+    background-color: #ebebeb;
+    color: #333333;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
+}
+
+.button:hover{
+    background-color: #d9534f;
+    border-color: #d9534f;
+    color: #333333;
+    transition: 0.5s;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
+}
+
+.row {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
+    color: #333333;
+}
+
+.deleteShelfButton {
+    border-radius: 5px;
+    border: 0;
+    background-color: #ebebeb;
+    color: #333333;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
+}
+
+.deleteShelfButton:hover{
+    background-color: #d9534f;
+    border: 0;
+    color: #f8f8f8;
+    transition: 0.3s;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
+}
+
+/* scroll menu */
+div.scrollmenu {
+    background-color: #f8f8f8;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+div.scrollmenu a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+}
+
+div.scrollmenu a:hover {
+    background-color: #d9534f;
+}
+
+.bookTitle {
+	padding-top:30px;
+	padding-bottom: 30px;
+	background-color: #cccccc;
+	border: 0;
+}
+
+.bookTitle:hover{
+    background-color: #d9534f;
+    border: 0;
+    transition: 0.3s;
 }
