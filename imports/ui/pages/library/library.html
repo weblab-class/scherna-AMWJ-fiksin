@@ -7,14 +7,17 @@ $(document).ready(function(){
 </script>
 
     {{#if userExists}}
-    <div class="row">
-        <ul class="nav nav-pills col-xs-10 col-xs-offset-2">
-            <li class="active"><a href="{{pathForLibrary}}">Library</a></li>
-            <li><a href="{{pathForProfile}}">Profile</a></li>
-            {{#if isMyAccount}}
-                <li><a href="{{pathForRequests}}">Requests</a></li>
-            {{/if}}
-        </ul>
+    <div class="row row-centered">
+        {{#with userExists}}
+            <!--<ul class="nav nav-pills col-xs-10 col-xs-offset-2">
+                <li class="active"><a href="{{pathForLibrary}}">Library</a></li>
+                <li><a href="{{pathForProfile}}">Profile</a></li>
+                {{#if isMyAccount}}
+                    <li><a href="{{pathForRequests}}">Requests</a></li>
+                {{/if}}
+            </ul>-->
+            <h2>{{username}}'s Library</h2>
+        {{/with}}
     </div>
     <br>
     <div class="row row-centered">

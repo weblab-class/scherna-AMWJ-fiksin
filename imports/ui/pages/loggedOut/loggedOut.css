@@ -1,0 +1,80 @@
+@import url(https://fonts.googleapis.com/css?family=Nunito:300,400);
+
+.parallax { 
+    /* The image used */
+    background-image: url("img/books_tomasso.jpg");
+
+    /* Set a specific height */
+    height: 560px; 
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h1, h2, h3 {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+    color: #333333;
+}
+
+h4, h5, h6, p {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
+    color: #333333;
+}
+
+.text-faded {
+  opacity: 0.75;
+}
+
+/* centered columns styles */
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+
+.btn {
+    border-radius: 5px;
+    border-color: #ebebeb;
+    background-color: #ebebeb;
+    color: #333333;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
+}
+
+.btn:hover{
+    background-color: #d9534f;
+    border-color: #d9534f;
+    color: #333333;
+    transition: 0.5s;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
+}
+
+#login-screen .dropdown-menu {
+  display: block;
+  position: relative;
+  height: 245px;
+  margin-left: auto;
+  margin-right: auto;
+  float: none;
+}
+
+#login-screen #login-dropdown-list {
+  display: block;
+}
+
+/* Hides the toggle that you click on */
+
+#login-screen a.dropdown-toggle {
+  display: none;
+}

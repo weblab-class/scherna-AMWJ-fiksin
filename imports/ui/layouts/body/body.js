@@ -1,7 +1,7 @@
 import { Books } from '/imports/api/books/books.js';
 import { Meteor } from 'meteor/meteor';
 import './body.html';
-import '../../components/loggedOut/loggedOut.js'
+import '../../pages/loggedOut/loggedOut.js'
 
 Template.App_body.onCreated(function () {
     Meteor.subscribe('books.yours');
@@ -12,7 +12,7 @@ Template.App_body.helpers({
         return Meteor.userId() != null;    
     },
     librarySize() {
-        return Books.find().count();
+        return Books.find({owner: Meteor.userId()}).count();
     },
     pathForHome() {
         return FlowRouter.path("App.home");
@@ -40,5 +40,5 @@ Template.App_body.helpers({
 Template.App_body.events({
     'click .logoutButton'(event, instance) {
         Accounts.logout();
-    },
+    }
 });
