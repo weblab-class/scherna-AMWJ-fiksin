@@ -85,3 +85,15 @@ div.scrollmenu a:hover {
     border: 0;
     transition: 0.3s;
 }
+
+.col-centered {
+    display:inline-block;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+
+.row-centered {
+    text-align:center;
+}

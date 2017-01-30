@@ -7,7 +7,7 @@ $(document).ready(function(){
 </script>
 
     {{#if userExists}}
-    <div class="row row-centered">
+    <div class="row">
         {{#with userExists}}
             <!--<ul class="nav nav-pills col-xs-10 col-xs-offset-2">
                 <li class="active"><a href="{{pathForLibrary}}">Library</a></li>
@@ -16,7 +16,10 @@ $(document).ready(function(){
                     <li><a href="{{pathForRequests}}">Requests</a></li>
                 {{/if}}
             </ul>-->
-            <h2>{{username}}'s Library</h2>
+            <div class="col-xs-12">
+                <h2 style="text-align:center">{{username}}'s Library</h2>
+                <a href="{{pathForAddBook}}" class="btn btn-default pull-right">Add Book</a>
+            </div>
         {{/with}}
     </div>
     <br>
