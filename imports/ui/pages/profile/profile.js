@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import './profile.html';
-import './profile.css'
+import './profile.css';
 
 Template.profile.onCreated(function () {
     Meteor.subscribe('userData');

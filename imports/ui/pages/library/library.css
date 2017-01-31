@@ -109,12 +109,9 @@ div.modal-body {
     font-family: 'Nunito', sans-serif;
     font-weight: 300;
     font-size: 13px;
-    display: inline-block;
-    white-space: normal;
-    min-width: 200px;
-    max-width: 200px;
-    margin-left: 0px;
-    max-height: 150px;
+    word-wrap: break-word;
+    min-width: 520px;
+    max-width: 520px;
 }
 
 .col-centered {
@@ -159,23 +156,4 @@ div.bookPic {
     transition: 0.5s;
     font-family: 'Nunito', sans-serif;
     font-weight: 300;
-}
-
-.scrolltext {
-    background-color: #f8f8f8;
-    overflow-x: auto;
-    overflow-y: scroll;
-    white-space: nowrap;
-}
-
-.scrolltext a {
-    display: inline-block;
-    color: white;
-    text-align: center;
-    padding: 14px;
-    text-decoration: none;
-}
-
-.scrolltext a:hover {
-    background-color: #d9534f;
 }
