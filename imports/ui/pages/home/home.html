@@ -1,46 +1,51 @@
 <template name="home">
-<div class="parallax">
-    <section class="bg-1" style="color: white; margin-top: -20px">
-        <hr style="height: 200px">
-        <div class="well" style="margin: 0 auto; width:450px; height: 100px; opacity: 0.8; border-radius: 10px">
-        <h1 style="text-align: center; margin-top:-10px; font-family: 'Nunito', sans-serif; color: #333333">Biblios</h1>
-        <p class="lead" style="text-align: center">your new favorite book is just a click away</p>
-        </div>
-    </section>
-</div>
-<!-- more info -->
-<section class="bg-primary" id="about" style="background-color: white">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 text-center">
-              <br>   
-              <h2 class="section-heading" style="font-family: 'Nunito', sans-serif; color: #333333">Expand your literary horizon.</h2>
+        
+    <div id="page-wrapper">
 
+        <div class="row" style="margin-top:50px">
+            <div class="col-lg-3 col-md-6">
+                <div class="panel panel-primary" style="border-color:#f5f5f5; border-radius: 5px">
+                    <div class="panel-heading" style="background-color:#f5f5f5; border:none;">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-bookmark fa-5x" style="color:#d9534f"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge"><h4 style="color: #333333;font-family: 'Nunito', sans-serif; font-weight: 300">Requests</h4></div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="/requests">
+                        <div class="panel-footer">
+                            <span class="pull-left">View Requests</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="panel panel-green" style="border-color:#f5f5f5; border-radius: 5px">
+                    <div class="panel-heading" style="background-color:#f5f5f5; border:none;">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-map-marker fa-5x" style="color:#d9534f"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge"><h4 style="color: #333333;font-family: 'Nunito', sans-serif; font-weight: 300">Books Nearby</h4></div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="search">
+                        <div class="panel-footer">
+                            <span class="pull-left">View Details</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
-        <!-- three columns -->
-        <div class="row row-centered">
-            <div class="col-md-3 col-centered">
-                 <h3 class="section-heading" style="text-align:center; color: #333333"><i class="glyphicon glyphicon-search"></i></h3>
-
-                <hr class="light">
-                <p class="text-faded" style="text-align:center">Explore hundreds of titles available nearby</p>
-            </div>
-            <div class="col-md-3 col-centered">
-                 <h3 class="section-heading" style="text-align:center; color: #333333"><i class="glyphicon glyphicon-book"></i></h3>
-
-                <hr class="light">
-                <p class="text-faded" style="text-align:center">Add books to your personal library and customize your shelves</p>
-            </div>
-            <div class="col-md-3 col-centered">
-                 <h3 class="section-heading" style="text-align:center; color: #333333"><i class="glyphicon glyphicon-comment"></i></h3>
-
-                <hr class="light">
-                <p class="text-faded" style="text-align:center">Exchange books with other people securely and easily</p>
-            </div>
-        </div>
-      <br>
-      <br>
     </div>
-</section>
 </template>

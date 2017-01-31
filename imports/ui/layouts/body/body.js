@@ -39,7 +39,9 @@ Template.App_body.helpers({
 
 Template.App_body.events({
     'click .logoutButton'(event, instance) {
+        event.preventDefault();
         Accounts.logout();
+        FlowRouter.go('/');
     },
     'submit .searchForm'(event) {
         event.preventDefault();
