@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { Books } from '../books/books.js';
 import { check } from 'meteor/check';
 
 Meteor.methods({
@@ -6,12 +7,18 @@ Meteor.methods({
         check(requestWeeks, Number);
         return Meteor.users.update(Meteor.userId(), { $set: { requestWeeks } });
     },
-    'userData.updateLongitude'(longitude) {
+    'userData.updateLocation'(longitude, latitude) {
         check(longitude, Number);
-        return Meteor.users.update(Meteor.userId(), { $set: { longitude } });
-    },
-    'userData.updateLatitude'(latitude) {
         check(latitude, Number);
-        return Meteor.users.update(Meteor.userId(), { $set: { latitude } });
-    },
+        var location = {
+            location: {
+                "Longitude": longitude,
+                "Latitude": latitude
+            }
+        };
+        Books.update( {owner: Meteor.userId() }, {$set: location})
+        return Meteor.users.update(Meteor.userId(), {
+            $set: location
+        });
+    }
 });

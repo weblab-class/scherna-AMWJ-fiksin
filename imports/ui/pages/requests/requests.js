@@ -14,7 +14,7 @@ Template.requests.helpers({
         return BookRequests.find({ fromUserId: Meteor.userId() });
     },
     requestsToYou() {
-        return BookRequests.find({ toUserId: Meteor.userId(), status:'requested' });
+        return BookRequests.find({ toUserId: Meteor.userId(), priority: 0 });
     },
     pathForLibrary() {
         return FlowRouter.path("App.library", { _id: Meteor.userId() });
@@ -42,6 +42,18 @@ Template.requests.helpers({
     },
     requestAccepted() {
         return this.status == "accepted";
+    },
+    allowDeleteRequest() {
+        return this.status != "lended";
+    },
+    allowAcceptRequest() {
+        return this.status == "requested";
+    },
+    allowLendingRequest() {
+        return this.status == "accepted";
+    },
+    allowReturnRequest() {
+        return this.status == "lended";
     }
 });
 
@@ -56,4 +68,10 @@ Template.requests.events({
     'click .deleteRequest'(event) {
         Meteor.call('bookRequests.delete', this._id);
     },
+    'click .borrowRequest'(event) {
+        Meteor.call('bookRequests.lended', this._id);
+    },
+    'click .returnRequest'(event) {
+        Meteor.call('bookRequests.delete', this._id);
+    }
 })

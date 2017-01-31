@@ -69,8 +69,7 @@ Template.profile.events({
     },
     'click .setLocation'(event) {
         navigator.geolocation.getCurrentPosition(function (position) {
-            Meteor.call('userData.updateLongitude', Number(position.coords.longitude));
-            Meteor.call('userData.updateLatitude', Number(position.coords.latitude));
+            Meteor.call('userData.updateLocation', Number(position.coords.longitude), Number(position.coords.latitude));
         });
     }
 });
