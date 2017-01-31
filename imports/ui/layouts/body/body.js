@@ -1,7 +1,6 @@
 import { Books } from '/imports/api/books/books.js';
 import { Meteor } from 'meteor/meteor';
 import './body.html';
-import './body.css'
 import '../../pages/loggedOut/loggedOut.js'
 
 Template.App_body.onCreated(function () {
@@ -40,7 +39,9 @@ Template.App_body.helpers({
 
 Template.App_body.events({
     'click .logoutButton'(event, instance) {
+        event.preventDefault();
         Accounts.logout();
+        FlowRouter.go('/');
     },
     'submit .searchForm'(event) {
         event.preventDefault();
