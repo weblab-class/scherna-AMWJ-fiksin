@@ -68,6 +68,13 @@ FlowRouter.route('/search', {
     },
 });
 
+FlowRouter.route('/search', {
+    name: 'App.search',
+    action(params, queryParams) {
+        BlazeLayout.render('App_body', { page: 'search' });
+    },
+});
+
 FlowRouter.route('/messages', {
     name: 'App.messages',
     action() {

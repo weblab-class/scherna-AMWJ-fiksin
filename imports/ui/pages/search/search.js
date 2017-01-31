@@ -3,14 +3,29 @@ import { BookRequests } from '/imports/api/bookRequests/bookRequests.js';
 import './search.html';
 import './search.css'
 
+var options = {
+    keepHistory: 1000 * 60 * 5,
+    localSearch: true
+};
+var fields = ['packageName', 'description'];
+
+PackageSearch = new SearchSource('searchResults', fields, options);
+
 Template.search.onCreated(function () {
     Meteor.subscribe('books.public');
     Meteor.subscribe('bookRequests.fromYou');
+
+    PackageSearch.search($("#q").val() || "");
 });
 
 Template.search.helpers({
     searchResults() {
-        return Books.find({ owner: {$not: Meteor.userId() }})
+        return PackageSearch.getData({
+            transform: function (matchText, regExp) {
+                return matchText.replace(regExp, "<b>$&</b>")
+            },
+            //sort: { isoScore: -1 }
+        });
     },
     title() {
         return this.title;
@@ -45,5 +60,5 @@ Template.search.events({
     'click .deleteRequestButton'(event) {
         const bookRequestId = BookRequests.findOne({ bookId: this._id, fromUserId: Meteor.userId() })._id;
         Meteor.call('bookRequests.delete', bookRequestId);
-    },
+    }
 });

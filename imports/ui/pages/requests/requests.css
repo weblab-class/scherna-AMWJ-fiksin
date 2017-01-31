@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Nunito:300,400);
+
 .nav-pills > li.active > a{
     background-color: #d9534f;
 }

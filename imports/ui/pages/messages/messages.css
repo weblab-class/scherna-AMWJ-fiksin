@@ -1,0 +1,13 @@
+.conversation {
+    cursor: pointer;
+}
+
+.conversation:hover {
+    background-color: rgba(255,220,220,.3);
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}

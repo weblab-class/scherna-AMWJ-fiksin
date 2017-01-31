@@ -23,4 +23,11 @@ Meteor.methods({
         }
         return Books.insert(bookObject);
     },
+    'books.delete'(id) {
+        check(id, String);
+        const book = Books.findOne(id);
+        if (book.owner == Meteor.userId()) {
+            Books.remove({ _id: id });
+        }
+    }
 });

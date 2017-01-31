@@ -31,6 +31,9 @@ autopublish
 twbs:bootstrap
 stylus
 accounts-password
+meteorhacks:search-source
+check
+ejson
 ian:accounts-ui-bootstrap-3
 quackware:amazon-product-api
 mizzao:bootboxjs

@@ -1,17 +1,4 @@
 <template name="library">
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script>
-    $(document).ready(function(){
-        $(".closeButton").click(function(){
-            $(".bookPreview").hide();
-        });
-        $(".bookTitle").click(function(){
-            $(".bookPreview").show();
-        });
-    });
-</script>
-
     {{#if userExists}}
     <div class="row">
         {{#with userExists}}
@@ -24,47 +11,50 @@
             </ul>-->
             <div class="col-xs-12">
                 <h2 style="text-align:center; font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400;">{{username}}'s Library</h2>
-                <a href="{{pathForAddBook}}" class="btn btn-default pull-right">Add Book</a>
+                {{#if isMyAccount}}
+                    <a href="{{pathForAddBook}}" class="btn btn-default pull-right">Add Book</a>
+                {{/if}}
             </div>
         {{/with}}
     </div>
     <br>
     <div class="row row-centered">
-        {{#with unsortedBooks}}
-            {{#if this.count}}
             <!-- BOOK PREVIEW -->
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="well" style="background-color: #f8f8f8; height: 358px; width: 300px">
+                        {{#if showPreview}}
+                        {{#with currentBook}}
                         <div class="bookPreview">
                             <img src="img/books_tomasso.jpg" class="img-responsive" alt="Book Title" style="float:left; margin-top: 0px; width:120px;height:160px; margin-right: 20px">
-                            <h4 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; text-align: left; margin-top: 0px">Title</h4>
-                            <h5 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; text-align: left; margin-top:13px">Author</h5>
+                            <h4 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; text-align: left; margin-top: 0px">{{title}}</h4>
+                            <h5 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; text-align: left; margin-top:13px">{{author}}</h5>
                             <button class="button" style="float:left; margin-top:4px; margin-right: 5px; border:0">Request</button>
                             <span class="badge" style="float:left; margin-top: 7px;">(#)</span>
                             <br> <br>
                             <button class="button closeButton" style="float:left; margin-top:4px; border:0">Close Preview</button>
                             <br>
+                            <button type="button" class="btn-danger deleteBook">Remove Book from library</button>
                             <hr /> <br>
                             <div class="scrolltext">
-                            <div class="bookDescription" style="text-align: justify; white-space: normal; overflow-y: scroll">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur id velit a velit blandit fermentum. Fusce metus metus, rhoncus a erat eu, tincidunt sodales justo. Maecenas pharetra egestas eros et faucibus. In eget ipsum in tellus tempus imperdiet at vitae urna. Vestibulum id dolor sit amet nibh porttitor congue vel ut nulla. Nunc et ligula velit. Nam lacus est, imperdiet non scelerisque sit amet, gravida at urna. Nunc vulputate dictum lacinia. Praesent ut augue sit amet metus malesuada auctor ut sit amet eros. Sed metus orci, mollis sit amet metus ac, tincidunt fermentum orci. Morbi sed elit a sapien egestas dapibus. Pellentesque facilisis leo at enim scelerisque sodales.
-
-Mauris vehicula ac velit ut ullamcorper. Donec a tellus sit amet eros pulvinar condimentum consequat sit amet urna. In congue lorem varius eros feugiat faucibus. In eu maximus arcu. Fusce vitae lacus lorem. Donec rhoncus, lacus eget fringilla fermentum, elit felis pellentesque.
+                            <div class="bookDescription" style="text-align: justify; overflow-y: scroll; overflow-x: none; word-wrap: break-word">
+                                {{ summary }}
                             </div>
                             </div>
                         </div>
+                        {{/with}}
+                        {{/if}}
                     </div>
                 </div>
-            <!-- END OF BOOK PREVIEW -->
+            <!-- END OF BOOK PREVIEW -->        
+        {{#with unsortedBooks}}
+            {{#if this.count}}
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div id="deModal" class="well" style="background-color: #F8F8F8">
                         <h4 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; margin-top: 0px; margin-bottom: 20px">Unsorted</h4>
                         <div class="scrollmenu">
-                        <ul>
-                            {{#each this}}
-                            <button class="bookTitle"></button>
-                            {{/each}}
-                        </ul>
+                        {{#each this}}
+                        <button class="bookTitle"></button>
+                        {{/each}}
                         </div>
                     </div>
                 </div>
@@ -75,17 +65,14 @@ Mauris vehicula ac velit ut ullamcorper. Donec a tellus sit amet eros pulvinar c
             <div class="well" style="background-color: #F8F8F8">
                 <h4 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; margin-top: 0px; margin-bottom: 20px;">{{name}}</h4>
                 <div class="scrollmenu">
-                <ul>
-                    
                     {{#each booksOnShelf}}
                         <button class="bookTitle"></button>
-                        
                     {{else}}
-                        {{#if isMyAccount}}
-                            This shelf is empty. <button class="deleteShelfButton">Delete Shelf</button>
-                        {{/if}}
+                    {{#if isMyAccount}}
+                    This shelf is empty.
+                    <button class="deleteShelfButton">Delete Shelf</button>
+                    {{/if}}
                     {{/each}}
-                </ul>
                 </div>
             </div>
         </div>
@@ -94,8 +81,8 @@ Mauris vehicula ac velit ut ullamcorper. Donec a tellus sit amet eros pulvinar c
         <div class="col-xs-12 col-sm-6 col-md-4">
             <div class="well">
                 <form class="newShelf">
-                    <input type="text" id="shelfName" name="shelfName" placeholder="New Shelf" style="border-color: #ebebeb; border-radius: 5px"/>
-                    <input type="submit" class="glyphicon glyphicon-plus" style="font-family: 'Nunito', sans-serif; color: #333333"/>
+                    <input type="text" id="shelfName" name="shelfName" placeholder="New Shelf" style="border-color: #ebebeb; border-radius: 5px" />
+                    <input type="submit" class="glyphicon glyphicon-plus" style="font-family: 'Nunito', sans-serif; color: #333333" />
                 </form>
             </div>
         </div>
