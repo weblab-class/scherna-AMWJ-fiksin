@@ -9,10 +9,10 @@ Template.App_body.onCreated(function () {
 
 Template.App_body.helpers({
     isLoggedIn() {
-        return Meteor.userId() != null;    
+        return Meteor.userId() != null;
     },
     librarySize() {
-        return Books.find().count();
+        return Books.find({ owner: Meteor.userId() }).count();
     },
     pathForHome() {
         return FlowRouter.path("App.home");
@@ -41,4 +41,18 @@ Template.App_body.events({
     'click .logoutButton'(event, instance) {
         Accounts.logout();
     },
+    'submit .searchForm'(event) {
+        event.preventDefault();
+        if (FlowRouter.getRouteName() == "App.search") {
+            PackageSearch.search(event.target.q.value);
+        }
+        else {
+            FlowRouter.go("/search");
+        }
+    },
+    'input #q'(event) {
+        if (FlowRouter.getRouteName() == "App.search") {
+            PackageSearch.search(event.target.value);
+        }
+    }
 });
