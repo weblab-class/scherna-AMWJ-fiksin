@@ -65,4 +65,3 @@ Template.library.events({
         Modal
     }
 })
-
