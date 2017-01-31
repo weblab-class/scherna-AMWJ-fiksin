@@ -109,13 +109,12 @@ div.modal-body {
     font-family: 'Nunito', sans-serif;
     font-weight: 300;
     font-size: 13px;
-    word-wrap: break-word;
+    display: inline-block;
     white-space: normal;
-    min-width: 290px;
-    max-width: 290px;
+    min-width: 200px;
+    max-width: 200px;
     margin-left: 0px;
-    max-height: 200px;
-    overflow-y: scroll;
+    max-height: 150px;
 }
 
 .col-centered {
@@ -164,7 +163,8 @@ div.bookPic {
 
 .scrolltext {
     background-color: #f8f8f8;
-    overflow: auto;
+    overflow-x: auto;
+    overflow-y: scroll;
     white-space: nowrap;
 }
 
