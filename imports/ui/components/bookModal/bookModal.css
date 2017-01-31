@@ -4,12 +4,15 @@
 	top: 100px;
 }
 
-div.modal-dialog {
+
+.modal-dialog {
 	width: 555px;
+    overflow-y: initial;
 }
 
-div.modal-body {
+.modal-body {
 	height: 440px;
+    overflow-y: auto;
 }
 
 .button {
