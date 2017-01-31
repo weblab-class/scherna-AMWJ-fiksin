@@ -1,6 +1,7 @@
 import { Books } from '/imports/api/books/books.js';
 import { Meteor } from 'meteor/meteor';
 import './body.html';
+import './body.css';
 import '../../pages/loggedOut/loggedOut.js'
 
 Template.App_body.onCreated(function () {

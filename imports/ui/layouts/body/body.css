@@ -1,1 +1,28 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito:300,400');
+
+.glyphicon-user {
+	color:#777777;
+}
+
+.glyphicon-user:hover {
+	color:#d9534f;
+	transition: 0.3s;
+}
+
+.glyphicon-book {
+	color:#777777;
+}
+
+.glyphicon-book:hover {
+	color:#d9534f;
+	transition: 0.3s;
+}
+
+.glyphicon-envelope {
+	color:#777777;
+}
+
+.glyphicon-envelope:hover {
+	color:#d9534f;
+	transition: 0.3s;
+}
