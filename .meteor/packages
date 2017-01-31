@@ -32,3 +32,5 @@ twbs:bootstrap
 stylus
 accounts-password
 ian:accounts-ui-bootstrap-3
+quackware:amazon-product-api
+mizzao:bootboxjs

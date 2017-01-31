@@ -14,3 +14,5 @@ import '../../api/users/server/publications.js';
 
 import '../../api/bookRequests/methods.js';
 import '../../api/bookRequests/server/publications.js';
+
+import '../../api/amazonBooks/methods.js';
