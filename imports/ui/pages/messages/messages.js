@@ -18,10 +18,17 @@ Template.messages.events({
     'submit .newConversation'(event) {
         event.preventDefault();
         const username = event.target.username.value;
-        const conversation = new Conversation().save();
-        const userToAdd = Meteor.users.findOne({username});
-        conversation.addParticipant(userToAdd);
-        conversation.sendMessage("Hi " + username);
-        event.target.message.value = '';
+        const userToAdd = Meteor.users.findOne({ username });
+        if (userToAdd != null) {
+            const conversation = new Conversation().save();
+            conversation.addParticipant(userToAdd);
+            conversation.sendMessage("Hi " + username);
+            event.target.username.value = '';
+        }
+    },
+    'click .deleteConversation'(event) {
+        this.removeParticipant();
+        this.sendMessage(Meteor.user().username + " has left the conversation");
+        event.stopPropagation();
     }
 });

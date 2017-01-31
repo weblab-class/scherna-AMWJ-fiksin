@@ -15,7 +15,7 @@ Template.search.onCreated(function () {
     Meteor.subscribe('books.public');
     Meteor.subscribe('bookRequests.fromYou');
 
-    PackageSearch.search($("#q").val());
+    PackageSearch.search($("#q").val() || "");
 });
 
 Template.search.helpers({

@@ -16,9 +16,11 @@
           <div class="conversation panel panel-default">
             <div class="panel-heading">
               {{#each participants}}
-                  <h4>{{user.username}}</h4>
+                  <h4 class="pull-left">{{user.username}}</h4>
               {{/each}}
-            </div>
+              <button class="btn-danger btn pull-right deleteConversation">Delete</button>
+                <div class="clearfix"></div>
+                </div>
             <div class="panel-body">
               {{#with lastMessage}}
                 <div class="col-xs-1">

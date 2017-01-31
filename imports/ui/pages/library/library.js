@@ -1,6 +1,7 @@
 import { Books } from '/imports/api/books/books.js';
 import { Shelves } from '/imports/api/shelves/shelves.js';
 import { Meteor } from 'meteor/meteor';
+//import { ReactiveVar } from 'reactivevar';
 import './library.html';
 import './library.css';
 
@@ -11,6 +12,8 @@ Template.library.onCreated(function () {
     Meteor.subscribe('books.yours');
     Meteor.subscribe('books.public');
     Meteor.subscribe('userData');
+
+    currentBookId = new ReactiveVar(null);
 });
 
 Template.library.helpers({
@@ -40,6 +43,12 @@ Template.library.helpers({
     },
     pathForAddBook() {
         return FlowRouter.path("App.addBook");
+    },
+    showPreview() {
+        return currentBookId.get() != null;
+    },
+    currentBook() {
+        return Books.findOne(currentBookId.get());
     }
 });
 
@@ -62,6 +71,13 @@ Template.library.events({
         Meteor.call('shelves.delete', this._id);
     },
     'click .bookTitle'(event) {
-        Modal
+        currentBookId.set(this._id);
+    },
+    'click .closeButton'(event) {
+        currentBookId.set(null);
+    },
+    'click .deleteBook'(event) {
+        Meteor.call('books.delete', this._id);
+        currentBookId.set(null);
     }
 })
