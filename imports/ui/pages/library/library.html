@@ -4,6 +4,7 @@
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip(); 
 });
+
 </script>
 
     {{#if userExists}}
@@ -17,7 +18,7 @@ $(document).ready(function(){
                 {{/if}}
             </ul>-->
             <div class="col-xs-12">
-                <h2 style="text-align:center">{{username}}'s Library</h2>
+                <h2 style="text-align:center; font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400;">{{username}}'s Library</h2>
                 <a href="{{pathForAddBook}}" class="btn btn-default pull-right">Add Book</a>
             </div>
         {{/with}}
@@ -26,8 +27,25 @@ $(document).ready(function(){
     <div class="row row-centered">
         {{#with unsortedBooks}}
             {{#if this.count}}
+            <!-- BOOK PREVIEW -->
                 <div class="col-xs-12 col-sm-6 col-md-4">
-                    <div class="well shelf" style="background-color: #F8F8F8">
+                    <div class="well" id="bookPreview" style="background-color: #f8f8f8; height: 400px; width: 300px">
+                            <img src="img/books_tomasso.jpg" class="img-responsive" alt="Book Title" style="float:left; margin-top: 0px; width:120px;height:160px; margin-right: 20px">
+                            <h4 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; text-align: left; margin-top: 0px">Title</h4>
+                            <h5 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; text-align: left; margin-top:13px">Author</h5>
+                            <button class="button" style="float:left; margin-top:4px; margin-right: 5px; border:0">Request</button>
+                            <span class="badge" style="float:left; margin-top: 7px;">(#)</span>
+                            <br>
+                            <hr />
+                        
+                            <div class="bookDescription" style="text-align: justify; white-space: normal">
+                            (book summary)
+                            </div>
+                    </div>
+                </div>
+            <!-- END OF BOOK PREVIEW -->
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div id="deModal" class="well" style="background-color: #F8F8F8">
                         <h4 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; margin-top: 0px">Unsorted</h4>
                         <ul>
                             {{#each this}}
@@ -42,15 +60,13 @@ $(document).ready(function(){
         {{/with}}
         {{#each shelves}}
         <div class="col-xs-12 col-sm-6 col-md-4">
-            <div class="well shelf" style="background-color: #F8F8F8">
-                <h4 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; margin-top: 0px">{{name}}</h4>
+            <div class="well" style="background-color: #F8F8F8">
+                <h4 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; margin-top: 0px; margin-bottom: 20px;">{{name}}</h4>
+                <div class="scrollmenu">
                 <ul>
                     
                     {{#each booksOnShelf}}
-                        <span data-toggle="modal" data-target="#id">
-                            <a><button class="bookTitle" data-toggle="tooltip" data-placement="bottom" title="{{title}}">
-                        </button></a>
-                        </span>
+                        <button class="bookTitle" id="specificBook"></button>
                         
                     {{else}}
                         {{#if isMyAccount}}
@@ -58,6 +74,7 @@ $(document).ready(function(){
                         {{/if}}
                     {{/each}}
                 </ul>
+                </div>
             </div>
         </div>
         {{/each}}
