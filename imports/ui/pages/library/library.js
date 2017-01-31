@@ -1,4 +1,5 @@
 import { Books } from '/imports/api/books/books.js';
+import { BookRequests } from '/imports/api/bookRequests/bookRequests.js';
 import { Shelves } from '/imports/api/shelves/shelves.js';
 import { Meteor } from 'meteor/meteor';
 //import { ReactiveVar } from 'reactivevar';
@@ -49,6 +50,9 @@ Template.library.helpers({
     },
     currentBook() {
         return Books.findOne(currentBookId.get());
+    },
+    alreadyRequested() {
+        return BookRequests.find({ bookId: currentBookId.get(), fromUserId: Meteor.userId() }).count() > 0;
     }
 });
 
@@ -79,5 +83,14 @@ Template.library.events({
     'click .deleteBook'(event) {
         Meteor.call('books.delete', this._id);
         currentBookId.set(null);
+    },
+    'click .request'(event) {
+        var currentBook = Books.findOne(currentBookId.get());
+        Meteor.call('bookRequests.create', currentBook.owner, currentBook._id);
+    },
+    'click .deleteRequest'(event) {
+        var currentBook = Books.findOne(currentBookId.get());
+        const bookRequestId = BookRequests.findOne({ bookId: currentBook._id, fromUserId: Meteor.userId() })._id;
+        Meteor.call('bookRequests.delete', bookRequestId);
     }
-})
+});

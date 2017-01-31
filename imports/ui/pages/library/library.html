@@ -28,7 +28,14 @@
                             <img src="img/books_tomasso.jpg" class="img-responsive" alt="Book Title" style="float:left; margin-top: 0px; width:120px;height:160px; margin-right: 20px">
                             <h4 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; text-align: left; margin-top: 0px">{{title}}</h4>
                             <h5 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; text-align: left; margin-top:13px">{{author}}</h5>
-                            <button class="button" style="float:left; margin-top:4px; margin-right: 5px; border:0">Request</button>
+                            {{#if isMyAccount}}
+                            {{else}}
+                                {{#if alreadyRequested}}
+                                <button class="button deleteRequest" style="float:left; margin-top:4px; margin-right: 5px; border:0">Delete Request</button>
+                                {{else}}
+                                <button class="button request" style="float:left; margin-top:4px; margin-right: 5px; border:0">Request</button>
+                                {{/if}}
+                            {{/if}}
                             <span class="badge" style="float:left; margin-top: 7px;">(#)</span>
                             <br> <br>
                             <button class="button closeButton" style="float:left; margin-top:4px; border:0">Close Preview</button>
