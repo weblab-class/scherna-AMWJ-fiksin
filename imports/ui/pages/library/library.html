@@ -33,7 +33,9 @@
                                             <h5 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; text-align: left; margin-top: 0px">{{title}}</h5>
                                             <h5 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; text-align: left; margin-top:13px">{{author}}</h5>
                                             <button class="button closeButton" style="margin-top:4px; margin-bottom:4px;border:0">Close Preview</button>
+                                            {{#if isMyAccount}}
                                             <button type="button" class="button btn-danger deleteBook" style="margin-top:4px; margin-bottom:4px;">Remove Book from Library</button>
+                                            {{/if}}
                                         </div>
                                     </div>
                                     <div class="row" style="margin-top:10px;">
