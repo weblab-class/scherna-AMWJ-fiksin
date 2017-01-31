@@ -5,7 +5,11 @@ import './bookModal.html';
 import './bookModal.css'
 
 Template.bookModal.onCreated(function () {
-    console.log(this);
+    Meteor.subscribe('books.yours');
+    Meteor.subscribe('books.public');
+    Meteor.subscribe('bookRequests.fromYou');
+    Meteor.subscribe('bookRequests.toYou');
+    Meteor.subscribe('userData');
 });
 
 Template.bookModal.helpers({

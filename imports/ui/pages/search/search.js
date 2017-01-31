@@ -13,7 +13,8 @@ PackageSearch = new SearchSource('searchResults', fields, options);
 Template.search.onCreated(function () {
     Meteor.subscribe('books.public');
     Meteor.subscribe('bookRequests.fromYou');
-
+    Meteor.subscribe('books.yours');
+    Meteor.subscribe('userData');
     PackageSearch.search($("#q").val() || "");
 });
 

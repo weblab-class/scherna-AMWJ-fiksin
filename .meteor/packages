@@ -27,7 +27,6 @@ johanbrook:publication-collector  # Test a Meteor publication by collecting its 
 accounts-facebook
 peppelg:bootstrap-3-modal
 socialize:messaging
-autopublish
 twbs:bootstrap
 stylus
 accounts-password

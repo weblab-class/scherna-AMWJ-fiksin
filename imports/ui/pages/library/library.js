@@ -58,9 +58,6 @@ Template.library.helpers({
     alreadyRequested() {
         return BookRequests.find({ bookId: currentBookId.get(), fromUserId: Meteor.userId() }).count() > 0;
     },
-    summaryText() {
-        return $.parseHTML(this.summary).val();
-    }
 });
 
 Template.library.events({

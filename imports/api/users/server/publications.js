@@ -2,8 +2,7 @@
 
 Meteor.publish("userData", function () {
     if (this.userId) {
-        return Meteor.users.find({},
-            { fields: { 'requestWeeks': 1, 'latitude': 1, 'longitude': 1 } });
+        return Meteor.users.find({});
     } else {
         this.ready();
     }
