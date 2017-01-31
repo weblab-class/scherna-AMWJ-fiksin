@@ -6,13 +6,14 @@
 
 
 .modal-dialog {
-	width: 555px;
+    width: 440px;
     overflow-y: initial;
 }
 
 .modal-body {
 	height: 440px;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .button {
