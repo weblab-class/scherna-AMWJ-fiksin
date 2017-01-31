@@ -1,7 +1,7 @@
 {
   "galaxy.meteor.com": {
     "env": {
-      "ROOT_URL": "http://xlibrex.meteorapp.com/",
+      "ROOT_URL": "http://biblios.meteorapp.com/",
       "MONGO_URL": "mongodb://amwj:blankpassword@ds111788.mlab.com:11788/xlibrex"
     }
   },
