@@ -1,29 +1,17 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito:300,400);
+@import url(https://fonts.googleapis.com/css?family=Nunito:300,400|Roboto);
 
 .parallax { 
     /* The image used */
-    background-image: url("img/books_tomasso.jpg");
+    background-image: url("img/bookshelves_background.png");
 
     /* Set a specific height */
     height: 560px; 
 
     /* Create the parallax scrolling effect */
-    background-attachment: fixed;
+    /*background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
-}
-
-h1, h2, h3 {
-    font-family: 'Nunito', sans-serif;
-    font-weight: 400;
-    color: #333333;
-}
-
-h4, h5, h6, p {
-    font-family: 'Nunito', sans-serif;
-    font-weight: 300;
-    color: #333333;
+    background-size: cover;*/
 }
 
 .text-faded {
@@ -77,4 +65,49 @@ h4, h5, h6, p {
 
 #login-screen a.dropdown-toggle {
   display: none;
+}
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+}
+
+.lead {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.intro-header {
+    padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+    padding-bottom: 50px;
+    text-align: center;
+    color: #f8f8f8;
+    background: url('img/bookshelves_background.jpeg') no-repeat center center;
+    background-size: cover;
+}
+
+.intro-message {
+    position: relative;
+    padding-top: 10%;
+    padding-bottom: 5%;
+}
+
+.intro-message > h1 {
+    margin: 0;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    font-size: 5em;
+}
+
+.intro-message > h3 {
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+}
+
+footer {
+    padding: 50px 0;
+    background-color: #f8f8f8;
+}
+
+p.copyright {
+    margin: 15px 0 0;
 }
