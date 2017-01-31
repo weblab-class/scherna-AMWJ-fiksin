@@ -15,6 +15,10 @@ Template.library.onCreated(function () {
     Meteor.subscribe('userData');
 
     currentBookId = new ReactiveVar(null);
+    firstBook = Books.findOne({owner:FlowRouter.getParam("_id")})
+    if (firstBook) {
+        currentBookId.set(firstBook._id);
+    }
 });
 
 Template.library.helpers({
@@ -53,6 +57,9 @@ Template.library.helpers({
     },
     alreadyRequested() {
         return BookRequests.find({ bookId: currentBookId.get(), fromUserId: Meteor.userId() }).count() > 0;
+    },
+    summaryText() {
+        return $.parseHTML(this.summary).val();
     }
 });
 

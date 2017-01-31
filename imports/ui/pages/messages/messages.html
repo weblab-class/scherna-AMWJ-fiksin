@@ -11,29 +11,39 @@
           </div>
         </form>
       </div>
-      {{#each currentUser.conversations}}
+      {{#if currentUser.conversations.length}}
+        {{#each currentUser.conversations}}
+          <div class="row">
+            <div class="conversation panel panel-default">
+              <div class="panel-heading">
+                {{#each participants}}
+                    <h4 class="pull-left">{{user.username}}</h4>
+                {{/each}}
+                <button class="btn-danger btn pull-right deleteConversation">Delete</button>
+                  <div class="clearfix"></div>
+                  </div>
+              <div class="panel-body">
+                {{#with lastMessage}}
+                  <div class="col-xs-1">
+                      <h4>{{user.username}}:</h4>
+                  </div>
+                  <div class="col-xs-11">
+                      <h4>{{body}}</h4>
+                  </div>
+                {{/with}}
+              </div>  
+            </div>
+          </div>
+        {{/each}}
+      {{else}}
         <div class="row">
-          <div class="conversation panel panel-default">
-            <div class="panel-heading">
-              {{#each participants}}
-                  <h4 class="pull-left">{{user.username}}</h4>
-              {{/each}}
-              <button class="btn-danger btn pull-right deleteConversation">Delete</button>
-                <div class="clearfix"></div>
-                </div>
+          <div class="panel panel-default">
             <div class="panel-body">
-              {{#with lastMessage}}
-                <div class="col-xs-1">
-                    <h4>{{user.username}}:</h4>
-                </div>
-                <div class="col-xs-11">
-                    <h4>{{body}}</h4>
-                </div>
-              {{/with}}
-            </div>  
+              <h5>Looks like you don't have any conversations! Either initiate a conversation above, or a conversation will be initiated automatically when you accept a user's borrow request.</h5>
+            </div>
           </div>
         </div>
-      {{/each}}
+      {{/if}}
     </div>
   {{/if}}
 </template>

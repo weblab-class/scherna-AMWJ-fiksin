@@ -4,7 +4,6 @@ import './search.html';
 import './search.css'
 
 var options = {
-    keepHistory: 1000 * 60 * 5,
     localSearch: true
 };
 var fields = ['packageName', 'description'];
@@ -42,17 +41,12 @@ Template.search.helpers({
 });
 
 Template.search.events({
-    'click .panel-heading span.clickable'(event) {
-        var $this = $(event.target);
-        if (!$this.hasClass('panel-collapsed')) {
-            $this.parents('.panel').find('.panel-body').slideUp();
-            $this.addClass('panel-collapsed');
-            $this.find('i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
-        } else {
-            $this.parents('.panel').find('.panel-body').slideDown();
-            $this.removeClass('panel-collapsed');
-            $this.find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
-        }
+    'click .col-item'(event) {
+        const username = Meteor.users.findOne(this.owner).username;
+        const pathToLibrary = FlowRouter.path("App.library", {_id: this.owner});
+        const alreadyRequested = BookRequests.find({ bookId: this._id, fromUserId: Meteor.userId() }).count() > 0;
+        bootbox.alert({message: "<div id='dialogNode'></div>", backdrop:true});
+        Blaze.renderWithData(Template.bookModal, this, $("#dialogNode")[0]);
     },
     'click .requestBookButton'(event) {
         Meteor.call('bookRequests.create', this.owner, this._id);

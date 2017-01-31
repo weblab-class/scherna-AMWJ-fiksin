@@ -1,21 +1,21 @@
 ﻿<template name="bookModal">
-    <div id="deModal" class="modal fade hidden-print" tabindex="-1">
-        <div class="modal-dialog" data-dismiss="modal">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <!-- put in book cover here - this is just a filler -->
-                    <img src="img/books_tomasso.jpg" class="img-responsive" alt="Book Title" style="float:left; margin-top: 4px; width:120px;height:160px; margin-right: 20px">
-                    <h4 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; text-align: left; margin-top: 5px">{{title}}</h4>
-                    <h5 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; text-align: left; margin-top:13px">{{author}}</h5>
-                    <button class="button" style="float:left; margin-top:4px; 	margin-right: 5px; border:0">Request</button>
-                    <span class="badge" style="float:left; margin-top: 7px;">(#)</span>
-                    <br>
-                    <hr />
-                        
-                    <div class="bookDescription" style="text-align: justify; white-space: normal">
-                            (book summary)
-                    </div>
-                </div>
+    <div class="container" style="overflow-y:scroll">
+        <div class="row">
+            <img src="{{imageUrl}}" class="img-responsive" alt="Book Title" style="float:left; margin-top: 4px; width:120px;height:160px; margin-right: 20px">
+            <a href="{{bookUrl}}"><h4 style="font-family: 'Nunito', sans-serif; font-weight: 400; text-align: left; margin-top: 5px">{{title}}</h4></a>
+            <h5 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; text-align: left; margin-top:13px">by {{author}}</h5>
+            <h5 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; text-align: left; margin-top:13px">ISBN: {{isbn}}</h5>
+            <h5 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; text-align: left; margin-top:13px">{{pageCount}} pages</h5>
+            <h5 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; text-align: left; margin-top:13px">Owned by <a href="{{pathToUserLibrary}}">{{username}}</a></h5>
+            {{#if alreadyRequested}}
+                <button class="button deleteRequestButton" style="float:left; margin-top:4px; margin-right: 5px; border:0">Delete Request</button>
+            {{else}}
+                <button class="button requestBookButton" style="float:left; margin-top:4px; margin-right: 5px; border:0">Request</button>
+            {{/if}}
+        </div>
+        <div class="row" style="margin-top:20px">
+            <div class="bookDescription" style="text-align: justify; white-space: normal">
+                <span>{{stripHTML summary}}</span>
             </div>
         </div>
     </div>

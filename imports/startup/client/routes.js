@@ -63,13 +63,6 @@ FlowRouter.notFound = {
 
 FlowRouter.route('/search', {
     name: 'App.search',
-    action() {
-        BlazeLayout.render('App_body', { page: 'search' });
-    },
-});
-
-FlowRouter.route('/search', {
-    name: 'App.search',
     action(params, queryParams) {
         BlazeLayout.render('App_body', { page: 'search' });
     },
