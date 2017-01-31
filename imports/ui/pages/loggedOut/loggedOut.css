@@ -1,19 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito:300,400|Roboto);
 
-.parallax { 
-    /* The image used */
-    background-image: url("img/bookshelves_background.png");
-
-    /* Set a specific height */
-    height: 560px; 
-
-    /* Create the parallax scrolling effect */
-    /*background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;*/
-}
-
 .text-faded {
   opacity: 0.75;
 }
