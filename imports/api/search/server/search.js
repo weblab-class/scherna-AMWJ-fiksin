@@ -26,6 +26,7 @@ SearchSource.defineSource('searchResults', function (searchText, options) {
             };
         })
     };
+    query["$and"].push({ owner: { $ne: Meteor.userId() } });
     console.log(JSON.stringify(query));
     return Books.find(query).fetch();
 });

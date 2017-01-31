@@ -18,6 +18,10 @@ body{margin:50;}
     border-radius: 5px;
 }
 
+.searchResult {
+    height: 320px;
+}
+
 @import url(http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css);
 .col-item
 {

@@ -11,8 +11,18 @@
                                 <a href="{{pathForProfileFrom}}">{{requestFromUser}}</a> requested {{requestTitle}}.
                             </div>
                             <div class="panel-footer">
+                                {{#if allowDeleteRequest }}
                                 <button class="btn btn-default deleteRequest" style="color:#8a8a8a">Delete</button>
+                                {{/if}}
+                                {{#if allowAcceptRequest }}
                                 <button class="btn btn-primary acceptRequest" style="color:#ffffff">Accept</button>
+                                {{/if}}
+                                {{#if allowLendingRequest }}
+                                <button class="btn btn-primary borrowRequest" style="color:#ffffff">Borrowed</button>
+                                {{/if}}
+                                {{#if allowReturnRequest }}
+                                <button class="btn btn-primary returnRequest" style="color:#ffffff">Returned</button>
+                                {{/if}}
                             </div>
                         </div>                        
                     </td>
