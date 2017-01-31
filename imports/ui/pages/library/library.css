@@ -24,7 +24,7 @@
 .button:hover{
     background-color: #d9534f;
     border-color: #d9534f;
-    color: #333333;
+    color: white;
     transition: 0.5s;
     font-family: 'Nunito', sans-serif;
     font-weight: 300;
@@ -55,13 +55,13 @@
 }
 
 /* scroll menu */
-div.scrollmenu {
+.scrollmenu {
     background-color: #f8f8f8;
     overflow: auto;
     white-space: nowrap;
 }
 
-div.scrollmenu a {
+.scrollmenu a {
     display: inline-block;
     color: white;
     text-align: center;
@@ -69,19 +69,91 @@ div.scrollmenu a {
     text-decoration: none;
 }
 
-div.scrollmenu a:hover {
+.scrollmenu a:hover {
     background-color: #d9534f;
 }
 
 .bookTitle {
-	padding-top:30px;
-	padding-bottom: 30px;
-	background-color: #cccccc;
-	border: 0;
+    padding-top:40px;
+    padding-bottom: 40px;
+    background-color: #cccccc;
+    border: 0;
 }
 
 .bookTitle:hover{
     background-color: #d9534f;
     border: 0;
     transition: 0.3s;
+}
+
+#deModal {
+    top: 100px;
+}
+
+div.modal-dialog {
+    width: 555px;
+}
+
+div.modal-body {
+    height: 440px;
+}
+
+.badge {
+    float:right;
+    background-color: #ebebeb; 
+    color: #333333;
+    font-weight: 300;
+}
+
+.bookDescription {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    word-wrap: break-word;
+    min-width: 520px;
+    max-width: 520px;
+}
+
+.col-centered {
+    display:inline-block;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+
+.row-centered {
+    text-align:center;
+}
+
+/* hover over book to show image */
+.bookPic {
+    display: none;
+}    
+
+div.bookPic {
+    min-height: 300px;
+    min-width: 200px;
+    max-height: 400px;
+    max-width: 300px;
+    margin: auto;
+}
+
+
+.btn {
+    border-radius: 5px;
+    border-color: #ebebeb;
+    background-color: #ebebeb;
+    color: #333333;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
+}
+
+.btn:hover{
+    background-color: #d9534f;
+    border-color: #d9534f;
+    color: white;
+    transition: 0.5s;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
 }

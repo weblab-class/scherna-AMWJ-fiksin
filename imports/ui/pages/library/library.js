@@ -38,6 +38,9 @@ Template.library.helpers({
     pathForRequests() {
         return FlowRouter.path("App.requests");
     },
+    pathForAddBook() {
+        return FlowRouter.path("App.addBook");
+    }
 });
 
 Template.library.events({
@@ -62,4 +65,3 @@ Template.library.events({
         Modal
     }
 })
-

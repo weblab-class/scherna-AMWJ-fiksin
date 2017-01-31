@@ -1,7 +1,7 @@
 import { Books } from '/imports/api/books/books.js';
 import { Meteor } from 'meteor/meteor';
 import './body.html';
-import '../../components/loggedOut/loggedOut.js'
+import '../../pages/loggedOut/loggedOut.js'
 
 Template.App_body.onCreated(function () {
     Meteor.subscribe('books.yours');
