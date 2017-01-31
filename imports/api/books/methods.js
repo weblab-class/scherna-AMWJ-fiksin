@@ -4,23 +4,16 @@ import { Books } from './books.js';
 import { Shelves } from '../shelves/shelves.js';
 
 Meteor.methods({
-    'books.create.byisbn'(isbn) {
-        check(isbn, String);
-
-        return Books.insert({
-            isbn,
-            private: false,
-            createdAt: new Date(),
-            owner: Meteor.userId()
-        });
-    },
-    'books.create.bytitle'(title, author, shelfId) {
-        check(title, String);
-        check(author, String);
+    'books.create'(shelfId, title, author, isbn, pageCount, summary, bookUrl, imageUrl) {
         const shelf = Shelves.findOne({ _id: shelfId, owner: Meteor.userId() });
         var bookObject = {
             title,
             author,
+            isbn,
+            pageCount,
+            summary,
+            bookUrl,
+            imageUrl,
             private: false,
             createdAt: new Date(),
             owner: Meteor.userId()
