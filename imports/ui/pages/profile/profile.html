@@ -1,42 +1,137 @@
 <template name="profile">
     {{#if userExists}}
-    <div class="row row-centered">
+    <div class="container-fluid">
+    <div class="jumbotron" style="background-color: #d9534f; margin-left:-90px; margin-right: -90px; margin-top: -30px; padding-bottom: 90px">
         {{#with userExists}}
-            <!--<ul class="nav nav-pills col-xs-10 col-xs-offset-2">
-                <li class="active"><a href="{{pathForLibrary}}">Library</a></li>
-                <li><a href="{{pathForProfile}}">Profile</a></li>
-                {{#if isMyAccount}}
-                    <li><a href="{{pathForRequests}}">Requests</a></li>
-                {{/if}}
-            </ul>-->
-            <h2 style="text-align:center; font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400;">{{username}}'s Profile</h2>
+            <h2 style="text-align:center; font-family: 'Nunito', sans-serif; color: white; font-weight: 400; margin-top: -20px;">{{username}}'s Profile</h2>
         {{/with}}
-    </div>
-
-    <div class="col-xs-3"></div>
-    <div class="col-xs-6">
-        <div class="well">
-        <div class="row">
-            <div class="col-xs-offset-1 col-xs-10" style="text-align: center">
+            <div class="col-xs-offset-1 col-xs-10" style="text-align: center; font-family: 'Nunito', sans-serif; font-weight: 300; color: white">
                 Current weeks a user may borrow books: {{requestWeeks}}. 
                 {{#if isMyAccount}}
-                <form id="requestWeeksForm">
-                    New value: <input name="newValue" type="text"> <input type="submit" style="background-color:#ebebeb; border:0; border-radius:5px">
-                </form>
+                    <form id="requestWeeksForm">
+                        New value: <input name="newValue" type="text"> <input type="submit" style="background-color:#ebebeb; color: #333333; border:0; border-radius:5px">
+                    </form>
                 {{/if}}
             </div>
-        </div>
-        <br>
-        <div class="row">
+
             <div class="col-xs-offset-2 col-xs-8">
                 {{#if isMyAccount}}
-                <button class="btn setLocation center-block">Set Location to Here</button>
-            {{/if}}
+                    <button class="setLocation center-block" style="margin-top: 10px">Set Location to Here</button>
+                {{/if}}
             </div>
-        </div>
-        </div>
+            <div class="col-xs-offset-2 col-xs-8">
+                {{#unless isMyAccount}}
+                    <button class="messageBtn center-block" style="margin-top:20px">Message Me!</button>
+                {{/unless}}
+            </div>
     </div>
-    <div class="col-xs-3"></div>
+    </div>
+    <div class="container">
+    <div class="row row-centered">
+        <div class="col-xs-1"></div>
+
+        <!-- add in proper code to show actual shelf stuff 
+            {{#with favoriteBooks}} -->
+            <div class="col-xs-5">
+                <div class="well" style="background-color: #F8F8F8">
+                    <h4 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; margin-top: 0px; margin-bottom: 20px">Favorite Books</h4>
+                    <div class="scrollmenu">
+                    <!--{{#each this}}-->
+                    <button class="bookTitle"></button>
+                    <!--{{/each}}-->
+                    </div>
+                </div>
+            </div>
+            <!-- if no books
+            {{else}}
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="well" style="background-color: #F8F8F8">
+                    <h4 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; margin-top: 0px; margin-bottom: 20px">Favorite Books</h4>
+                    <div class="scrollmenu">
+                        <h6 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 300;">Add your favorite books to this shelf!</h6>
+                    </div>
+                </div>
+            </div> 
+            {{/if}}
+            {{/with}} -->
+
+        <!-- add in proper code to show actual shelf stuff 
+            {{#with currentBooks}} -->
+            <div class="col-xs-5">
+                <div class="well" style="background-color: #F8F8F8">
+                    <h4 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; margin-top: 0px; margin-bottom: 20px">Currently Reading</h4>
+                    <div class="scrollmenu">
+                    <!--{{#each this}}-->
+                    <button class="bookTitle"></button>
+                    <!--{{/each}}-->
+                    </div>
+                </div>
+            </div>
+            <!-- if no books in shelf 
+            {{else}}
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="well" style="background-color: #F8F8F8">
+                    <h4 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; margin-top: 0px; margin-bottom: 20px">Currently Reading</h4>
+                    <div class="scrollmenu">
+                        <h6 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 300;">Put the books you're currently reading here!</h6>
+                    </div>
+                </div>
+            </div> 
+            {{/if}}
+            {{/with}} -->
+            <div class="col-xs-1"></div>
+    </div>
+
+    <div class="row row-centered">
+        <!-- add in proper code to show actual shelf stuff 
+        {{#with recommendedBooks}} -->
+            <div class="col-xs-1"></div>
+            <div class="col-xs-5">
+                <div class="well" style="background-color: #F8F8F8">
+                    <h4 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; margin-top: 0px; margin-bottom: 20px">Recommendations</h4>
+                    <div class="scrollmenu">
+                    <!--{{#each this}}-->
+                    <button class="bookTitle"></button>
+                    <!--{{/each}}-->
+                    </div>
+                </div>
+            </div>
+            <!-- if no books 
+            {{else}}
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="well" style="background-color: #F8F8F8">
+                    <h4 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; margin-top: 0px; margin-bottom: 20px">Recommendations</h4>
+                    <div class="scrollmenu">
+                        <h6 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 300;">Recommend books to others by placing some on this shelf!</h6>
+                    </div>
+                </div>
+            </div> 
+            {{/if}}
+            {{/with}} -->
+
+        <!-- add in proper code to show actual shelf stuff -->
+            <div class="col-xs-5">
+                <div class="well" style="background-color: #F8F8F8">
+                    <h4 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; margin-top: 0px; margin-bottom: 20px">Books We Share</h4>
+                    <div class="scrollmenu">
+                    <!--{{#each this}}-->
+                    <button class="bookTitle"></button>
+                    <!--{{/each}}-->
+                    </div>
+                </div>
+            </div>
+            <!-- if no books
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="well" style="background-color: #F8F8F8">
+                    <h4 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; margin-top: 0px; margin-bottom: 20px">Books We Share</h4>
+                    <div class="scrollmenu">
+                        <h6 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 300;">You and {{username}} do not have any books in common.</h6>
+                    </div>
+                </div>
+            </div> -->
+        <div class="col-xs-1"></div>
+    </div>
+    </div>
     {{else}}
         This user does not exist.
     {{/if}}
