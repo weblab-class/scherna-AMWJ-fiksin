@@ -49,17 +49,33 @@
       
       <div class="container col-xs-12">
         <div class="row">
-            {{#each searchResults}}
-            <div class="col-xs-6 col-sm-6 col-md-2 searchResult">
-                <div class="col-item">
-                    <div class="photo">
-                        <img src="{{imageUrl}}" class="img-responsive" alt="a" />
-                    </div> 
-                    <h5 class="text-center" style="margin-top:5px">{{title}}</h5>
-                    <p class="text-center" style="font-size:12px; color:#d9534f;">{{author}}</p>
-                </div>
+            <table class="table">
+                {{#each searchResults}}
+                <tr style="height:300px" class="row">
+                    {{#each this}}
+                    <td class="col-sm-2 col-xs-4 pull-left">
+                        <div class="searchResult">
+                            <div class="col-item">
+                                <div class="photo" style="height:200px;overflow: hidden;">
+                                    <img src="{{imageUrl}}" class="img-responsive" alt="{{title}}" style="width:100%" />
+                                </div>
+                                <h5 class="text-center" style="margin-top:5px;max-height: 75px;overflow: hidden;">{{title}}</h5>
+                                <p class="text-center" style="font-size:12px; color:#d9534f;">{{author}}</p>
+                            </div>
+                        </div>
+                    </td>
+                    {{/each}}
+                </tr>
+                {{/each}}
+            </table>
+            <div class="col-xs-2 col-offset-xs-5">
+                {{#if showPreviousArrow}}
+                <span class="glyphicon glyphicon-arrow-left previous"></span>
+                {{/if}}
+                {{#if showNextArrow}}
+                <span class="glyphicon glyphicon-arrow-right next"></span>
+                {{/if}}
             </div>
-            {{/each}}
         </div>
       </div>
     </div>

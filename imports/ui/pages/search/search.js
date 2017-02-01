@@ -15,17 +15,19 @@ Template.search.onCreated(function () {
     Meteor.subscribe('bookRequests.fromYou');
     Meteor.subscribe('books.yours');
     Meteor.subscribe('userData');
-    PackageSearch.search($("#q").val() || "");
+    searchPage = new ReactiveVar(0);
+    PackageSearch.search($("#q").val() || "", {page: searchPage.get()});
 });
 
 Template.search.helpers({
     searchResults() {
-        return PackageSearch.getData({
-            transform: function (matchText, regExp) {
-                return matchText.replace(regExp, "<b>$&</b>")
-            },
-            //sort: { isoScore: -1 }
+        const results = PackageSearch.getData({
         });
+        const rowedResults = [];
+        for (i = 0; i < results.length; i += 6) {
+            rowedResults.push(results.slice(i, i + 6));
+        }
+        return rowedResults;
     },
     title() {
         return this.title;
@@ -38,6 +40,13 @@ Template.search.helpers({
     },
     alreadyRequested() {
         return BookRequests.find({ bookId: this._id, fromUserId: Meteor.userId() }).count() > 0;
+    },
+    showNextArrow() {
+        const metadata = PackageSearch.getMetadata();
+        return (metadata.page + 1) * 24 < metadata.total;
+    },
+    showPreviousArrow() {
+        return PackageSearch.getMetadata().page > 0;
     }
 });
 
