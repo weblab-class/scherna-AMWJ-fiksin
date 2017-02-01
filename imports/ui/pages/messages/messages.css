@@ -11,3 +11,8 @@
     background-color: #d9534f;
     border-color: #d43f3a;
 }
+
+.lastMessageBody{
+    max-height: 100px;
+    overflow: hidden;
+}
