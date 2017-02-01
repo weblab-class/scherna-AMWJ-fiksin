@@ -53,9 +53,9 @@ Template.search.helpers({
 Template.search.events({
     'click .col-item'(event) {
         const username = Meteor.users.findOne(this.owner).username;
-        const pathToLibrary = FlowRouter.path("App.library", {_id: this.owner});
+        const pathToLibrary = FlowRouter.path("App.library", { _id: this.owner });
         const alreadyRequested = BookRequests.find({ bookId: this._id, fromUserId: Meteor.userId() }).count() > 0;
-        bootbox.alert({message: "<div id='dialogNode'></div>", backdrop:true});
+        bootbox.alert({ message: "<div id='dialogNode'></div>", backdrop: true });
         Blaze.renderWithData(Template.bookModal, this, $("#dialogNode")[0]);
     },
     'click .requestBookButton'(event) {
@@ -64,5 +64,13 @@ Template.search.events({
     'click .deleteRequestButton'(event) {
         const bookRequestId = BookRequests.findOne({ bookId: this._id, fromUserId: Meteor.userId() })._id;
         Meteor.call('bookRequests.delete', bookRequestId);
+    },
+    'click .next'(event) {
+        searchPage.set(searchPage.get() + 1);
+        PackageSearch.search($("#q").val() || "", { page: searchPage.get() });
+    },
+    'click .previous'(event) {
+        searchPage.set(searchPage.get() - 1);
+        PackageSearch.search($("#q").val() || "", { page: searchPage.get() });
     }
 });
