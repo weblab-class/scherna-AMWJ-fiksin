@@ -15,17 +15,18 @@ Template.search.onCreated(function () {
     Meteor.subscribe('bookRequests.fromYou');
     Meteor.subscribe('books.yours');
     Meteor.subscribe('userData');
-    PackageSearch.search($("#q").val() || "");
+    PackageSearch.search($("#q").val() || "", {page: 0});
 });
 
 Template.search.helpers({
     searchResults() {
-        return PackageSearch.getData({
-            transform: function (matchText, regExp) {
-                return matchText.replace(regExp, "<b>$&</b>")
-            },
-            //sort: { isoScore: -1 }
+        const results = PackageSearch.getData({
         });
+        const rowedResults = [];
+        for (i = 0; i < results.length; i += 4) {
+            rowedResults.push(results.slice(i, i + 4));
+        }
+        return rowedResults;
     },
     title() {
         return this.title;

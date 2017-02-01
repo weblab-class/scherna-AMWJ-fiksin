@@ -64,7 +64,7 @@ Template.App_body.events({
     },
     'input #q'(event) {
         if (FlowRouter.getRouteName() == "App.search") {
-            PackageSearch.search(event.target.value);
+            PackageSearch.search(event.target.value, {page: 0});
         }
     }
 });

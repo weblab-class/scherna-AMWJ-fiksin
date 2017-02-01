@@ -21,13 +21,11 @@
     font-weight: 300;
 }
 
-.button:hover{
+.button.selectedBook {
     background-color: #d9534f;
     border-color: #d9534f;
     color: white;
     transition: 0.5s;
-    font-family: 'Nunito', sans-serif;
-    font-weight: 300;
 }
 
 .row {
@@ -80,7 +78,13 @@
     border: 0;
 }
 
-.bookTitle:hover{
+.bookTitle:hover {
+    background-color: #d9534f;
+    border: 0;
+    transition: 0.3s;
+}
+
+.bookTitle.selectedBook {
     background-color: #d9534f;
     border: 0;
     transition: 0.3s;

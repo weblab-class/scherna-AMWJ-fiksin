@@ -58,6 +58,9 @@ Template.library.helpers({
     alreadyRequested() {
         return BookRequests.find({ bookId: currentBookId.get(), fromUserId: Meteor.userId() }).count() > 0;
     },
+    isSelected() {
+        return this._id == currentBookId.get();
+    }
 });
 
 Template.library.events({
@@ -85,8 +88,13 @@ Template.library.events({
         currentBookId.set(null);
     },
     'click .deleteBook'(event) {
-        Meteor.call('books.delete', this._id);
-        currentBookId.set(null);
+        Meteor.call('books.delete', this._id, function (error) {
+            currentBookId.set(null);
+            const nextBook = Books.findOne({ shelf: this.shelf });
+            if (nextBook) {
+                currentBookId.set(nextBook._id);
+            }
+        });
     },
     'click .request'(event) {
         var currentBook = Books.findOne(currentBookId.get());

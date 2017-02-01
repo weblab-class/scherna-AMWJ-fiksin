@@ -2,18 +2,10 @@
 import { check } from 'meteor/check';
 
 SearchSource.defineSource('searchResults', function (searchText, options) {
-    /*var options = { sort: { isoScore: -1 }, limit: 20 };
-
-    if (searchText) {
-        var regExp = buildRegExp(searchText);
-        var selector = { packageName: regExp, description: regExp };
-        return Packages.find(selector, options).fetch();
-    } else {
-        return Packages.find({}, options).fetch();
-    }*/
+    console.log(options.page);
+    const pageNumber = options.page || 0;
     check(searchText, String);
     var substrings = searchText.split(" ");
-    console.log(substrings);
     fields = ["title", "author", "genre"];
     query = {
         $and: substrings.map(function (searchTerm) {
@@ -27,8 +19,7 @@ SearchSource.defineSource('searchResults', function (searchText, options) {
         })
     };
     query["$and"].push({ owner: { $ne: Meteor.userId() } });
-    console.log(JSON.stringify(query));
-    return Books.find(query).fetch();
+    return Books.find(query, {limit: 20, skip: 20 * pageNumber }).fetch();
 });
 
 function buildRegExp(searchText) {

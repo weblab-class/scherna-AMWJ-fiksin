@@ -20,6 +20,7 @@ body{margin:50;}
 
 .searchResult {
     height: 320px;
+    cursor: pointer;
 }
 
 @import url(http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css);
