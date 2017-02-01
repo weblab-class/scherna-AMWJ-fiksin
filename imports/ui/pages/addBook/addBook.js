@@ -33,26 +33,37 @@ Template.addBook.events({
                     var modalHTML = `<table class="table"><form>`
                     var results = {};
                     res.forEach(function (result, index) {
-                        const itemAttributes = result.ItemAttributes[0];
-                        const bookUrl = result.DetailPageURL[0];
-                        const summary = result.EditorialReviews[0].EditorialReview[0].Content[0];
-                        const imgUrl = result.LargeImage[0].URL[0];
-                        const bookTitle = itemAttributes.Title[0]
-                        const bookAuthor = itemAttributes.Author[0]
-                        const isbn = itemAttributes.ISBN[0]
-                        const pageCount = itemAttributes.NumberOfPages[0]
-                        var optionHTML = `<tr class="">
-                                            <td>
-                                                <input type="radio" name="option" value=${index}>
-                                            </td>
-                                            <td>
-                                                <div class="row"><a href="${bookUrl}">${bookTitle}</a></div>
-                                                <div class="row">by ${bookAuthor}</div>
-                                                <div class="row">ISBN: ${isbn}</div>
-                                            </td>
-                                        </tr>`
-                        modalHTML += optionHTML;
-                        results[index] = {itemAttributes, bookUrl, summary, imgUrl, bookTitle, bookAuthor, isbn, pageCount};
+                        try {
+                            const itemAttributes = result.ItemAttributes[0];
+                            const bookUrl = result.DetailPageURL[0];
+                            let summary = 'No summary found';
+                            if (result.EditorialReviews) {
+                                summary = result.EditorialReviews[0].EditorialReview[0].Content[0];
+                            }
+                            const imgUrl = result.LargeImage[0].URL[0];
+                            const bookTitle = itemAttributes.Title[0];
+                            let bookAuthor = 'Author Unknown';
+                            if (itemAttributes.Author) {
+                                bookAuthor = itemAttributes.Author[0];
+                            }
+                            const isbn = itemAttributes.ISBN[0];
+                            let pageCount = 'Unknown';
+                            if (itemAttributes.NumberOfPages) {
+                                pageCount = itemAttributes.NumberOfPages[0];
+                            } 
+                            var optionHTML = `<tr class="">
+                                                <td>
+                                                    <input type="radio" name="option" value=${index}>
+                                                </td>
+                                                <td>
+                                                    <div class="row"><a href="${bookUrl}">${bookTitle}</a></div>
+                                                    <div class="row">by ${bookAuthor}</div>
+                                                    <div class="row">ISBN: ${isbn}</div>
+                                                </td>
+                                            </tr>`
+                            modalHTML += optionHTML;
+                            results[index] = {itemAttributes, bookUrl, summary, imgUrl, bookTitle, bookAuthor, isbn, pageCount};
+                        } catch (err) {}
                     });
                     modalHTML += `</form></table>`;
                     bootbox.confirm({
@@ -60,7 +71,7 @@ Template.addBook.events({
                         message: modalHTML, 
                         callback: function(result) {
                             if (result) {
-                                const index = $('input[name=option]:checked').val();
+                                const index = $('input[name=option]:checked').val() || 0;
                                 const correctBook = results[index]
                                 Meteor.call('books.create', shelfId, correctBook.bookTitle, correctBook.bookAuthor, correctBook.isbn, correctBook.pageCount, correctBook.summary, correctBook.bookUrl, correctBook.imgUrl, function () {
                                 });
@@ -71,6 +82,7 @@ Template.addBook.events({
                 catch(err) {
                     bootbox.alert("We could not find a book matching your specifications. Try using the ISBN!");
                     console.log(err);
+                    console.log(res);
                 }
             }
         });
@@ -85,44 +97,63 @@ Template.addBook.events({
 
         Meteor.call('amazonAPI.getBookByISBN', isbn, function (err, res) {
             if (err) {
-                bootbox.alert("We could not find a book matching your specifications.");
+                bootbox.alert("We could not find a book matching your specifications. Try using the ISBN!");
             }
             else {
                 try {
-                    const itemAttributes = res.ItemAttributes[0];
-                    const bookUrl = res.DetailPageURL[0];
-                    const summary = res.EditorialReviews[0].EditorialReview[0].Content[0];
-                    const imgUrl = res.LargeImage[0].URL[0];
-                    const bookTitle = itemAttributes.Title[0]
-                    const bookAuthor = itemAttributes.Author[0]
-                    const isbn = itemAttributes.ISBN[0]
-                    const pageCount = itemAttributes.NumberOfPages[0]
-                    console.log('Title: ' + bookTitle);
-                    console.log('Author: ' + bookAuthor);
-                    console.log('ISBN: ' + isbn);
-                    console.log('Page Count: ' + pageCount);
-                    console.log('Summary: ' + summary);
-                    console.log('Book URL: ' + bookUrl);
-                    console.log('Image URL: ' + imgUrl);
-                    modalHTML = `<div class="container">
-                                    <div class="row"><a href="${bookUrl}">${bookTitle}</a></div>
-                                    <div class="row">by ${bookAuthor}</div>
-                                    <div class="row">ISBN: ${isbn}</div>
-                                </div>`
+                    var modalHTML = `<table class="table"><form>`
+                    var results = {};
+                    res.forEach(function (result, index) {
+                        try {
+                            const itemAttributes = result.ItemAttributes[0];
+                            const bookUrl = result.DetailPageURL[0];
+                            let summary = 'No summary found';
+                            if (result.EditorialReviews) {
+                                summary = result.EditorialReviews[0].EditorialReview[0].Content[0];
+                            }
+                            const imgUrl = result.LargeImage[0].URL[0];
+                            const bookTitle = itemAttributes.Title[0];
+                            let bookAuthor = 'Author Unknown';
+                            if (itemAttributes.Author) {
+                                bookAuthor = itemAttributes.Author[0];
+                            }
+                            const isbn = itemAttributes.ISBN[0];
+                            let pageCount = 'Unknown';
+                            if (itemAttributes.NumberOfPages) {
+                                pageCount = itemAttributes.NumberOfPages[0];
+                            } 
+                            var optionHTML = `<tr class="">
+                                                <td>
+                                                    <input type="radio" name="option" value=${index}>
+                                                </td>
+                                                <td>
+                                                    <div class="row"><a href="${bookUrl}">${bookTitle}</a></div>
+                                                    <div class="row">by ${bookAuthor}</div>
+                                                    <div class="row">ISBN: ${isbn}</div>
+                                                </td>
+                                            </tr>`
+                            modalHTML += optionHTML;
+                            results[index] = {itemAttributes, bookUrl, summary, imgUrl, bookTitle, bookAuthor, isbn, pageCount};
+                        } catch (err) {}
+                    });
+                    modalHTML += `</form></table>`;
                     bootbox.confirm({
-                        title: "Is this the book you meant?",  
+                        title: "Which book did you mean?",  
                         message: modalHTML, 
                         callback: function(result) {
                             if (result) {
-                                Meteor.call('books.create', shelfId, bookTitle, bookAuthor, isbn, pageCount, summary, bookUrl, imgUrl, function () {
-                                    
+                                const index = $('input[name=option]:checked').val() || 0;
+                                const correctBook = results[index]
+                                Meteor.call('books.create', shelfId, correctBook.bookTitle, correctBook.bookAuthor, correctBook.isbn, correctBook.pageCount, correctBook.summary, correctBook.bookUrl, correctBook.imgUrl, function () {
                                 });
                             }
                         }
                     });
                 }
                 catch(err) {
-                    bootbox.alert("We could not find a book matching your specifications.");
+                    bootbox.alert("We could not find a book matching your specifications. Try using the ISBN!");
+                    console.log(err);
+                    console.log(res);
                 }
             }
         });
