@@ -11,7 +11,7 @@
           </div>
         </form>
       </div>
-      {{#if currentUser.conversations.length}}
+      {{#if hasConversations}}
         {{#each currentUser.conversations}}
           <div class="row">
             <div class="conversation panel panel-default">
@@ -20,8 +20,8 @@
                     <h4 class="pull-left">{{user.username}}</h4>
                 {{/each}}
                 <button class="btn-danger btn pull-right deleteConversation">Delete</button>
-                  <div class="clearfix"></div>
-                  </div>
+                <div class="clearfix"></div>
+              </div>
               <div class="panel-body">
                 {{#with lastMessage}}
                   <div class="col-xs-1">

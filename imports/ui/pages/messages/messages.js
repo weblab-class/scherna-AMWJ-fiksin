@@ -4,11 +4,16 @@ import './messages.html';
 import './messages.css';
 
 Template.messages.onCreated(function() {
-
+    Meteor.subscribe('userData');
+    Meteor.subscribe('conversationData');
+    Meteor.subscribe('messageData');
+    Meteor.subscribe('participantData');
 });
 
 Template.messages.helpers({
-    
+    hasConversations() {
+        return Meteor.user().conversations().count() > 0;
+    }
 });
 
 Template.messages.events({
