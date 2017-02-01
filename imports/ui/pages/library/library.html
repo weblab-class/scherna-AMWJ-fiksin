@@ -9,11 +9,11 @@
                     <li><a href="{{pathForRequests}}">Requests</a></li>
                 {{/if}}
             </ul>-->
-            <div class="col-xs-12">
+            <div class="col-xs-12" style="text-align:center">
                 <h2 style="text-align:center; font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400;">{{username}}'s Library</h2>
-                {{#if isMyAccount}}
-                    
-                {{/if}}
+                {{#unless isMyAccount}}
+                    <a style="text-align:center" href="{{pathForProfile}}" class="btn btn-danger">Go to my profile!</a>
+                {{/unless}}
             </div>
         {{/with}}
     </div>
