@@ -2,7 +2,6 @@
 import { check } from 'meteor/check';
 
 SearchSource.defineSource('searchResults', function (searchText, options) {
-    console.log(options.page);
     const pageNumber = options.page || 0;
     check(searchText, String);
     var substrings = searchText.split(" ");

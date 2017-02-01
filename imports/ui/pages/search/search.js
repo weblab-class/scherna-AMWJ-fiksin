@@ -23,8 +23,8 @@ Template.search.helpers({
         const results = PackageSearch.getData({
         });
         const rowedResults = [];
-        for (i = 0; i < results.length; i += 4) {
-            rowedResults.push(results.slice(i, i + 4));
+        for (i = 0; i < results.length; i += 6) {
+            rowedResults.push(results.slice(i, i + 6));
         }
         return rowedResults;
     },
