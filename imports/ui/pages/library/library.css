@@ -86,14 +86,8 @@
 
 .bookTitle:hover {
     background-color: #d9534f;
-    border: 0;
-    transition: 0.3s;
-}
-
-.bookTitle.selectedBook {
-    background-color: #d9534f;
     padding-left:30px;
-    padding-right: 30px;
+    padding-right:30px;
     transition: 0.4s;
 }
 
