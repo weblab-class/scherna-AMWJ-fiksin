@@ -1,10 +1,87 @@
 <template name="home">
-        
-    <div id="page-wrapper">
+    <div class="container-fluid">
+    <div class="jumbotron" style="background-color: #d9534f; margin-left:-120px; margin-right: -120px; margin-top: -30px; padding-bottom: 40px">
+            <h2 style="text-align:center; font-family: 'Nunito', sans-serif; color: white; font-weight: 400; margin-top:0px">Welcome to Biblios!</h2>
+    </div>
+    </div>
+    <!-- "Requests" panel adapted from Start Bootstrap "SB Admin 2" template: https://startbootstrap.com/template-overviews/sb-admin-2/ -->
+        <div class="container-fluid">
+        <div class="row" style="margin-top: 10px">
+            <div class="col-lg-5 col-md-9">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="background-color:#f5f5f5">
+                    <h4 style="text-align:center; font-family: 'Nunito', sans-serif; color: #333333; font-weight: 300;">How Does Biblios Work?</h4>
+                </div>
+                <div class="panel-body">
+                    <ul style="margin-left: -30px; margin-top: 10px">
+                        <div class="row" style="margin-bottom:10px">
+                            <div class="col-xs-1">
+                            <span class="glyphicon glyphicon-search glyphinfo" style="margin-top:5px;"></span>
+                            </div>
+                            <div class="col-xs-11 glyphtext"> Explore hundreds of titles and search for books you own or books you'd like to borrow.
+                            </div>
+                        </div>
 
-        <div class="row" style="margin-top:50px">
-            <div class="col-lg-3 col-md-6">
-                <div class="panel panel-primary" style="border-color:#f5f5f5; border-radius: 5px">
+                        <div class="row" style="margin-bottom:10px">
+                            <div class="col-xs-1">
+                                <span class="glyphicon glyphicon-book glyphinfo" style="margin-top: 2px"></span>
+                            </div>
+                            <div class="col-xs-11 glyphtext">
+                                Add books you own to your library and organize them in shelves. 
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom:10px">
+                            <div class="col-xs-1">
+                                <span class="glyphicon glyphicon-bookmark glyphinfo" style="margin-top:10px"></span>
+                            </div>
+                            <div class="col-xs-11 glyphtext">
+                            When you find a book you'd like to borrow, click "Request" to talk to the owner and add yourself to the queue.
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom:10px">
+                            <div class="col-xs-1">
+                                <span class="glyphicon glyphicon-user glyphinfo" style="margin-top:2px"></span>
+                            </div>
+                            <div class="col-xs-11 glyphtext">
+                                Display your recommendations, favorite books, and current reading list on your profile.
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom:10px">
+                            <div class="col-xs-1">
+                                <span class="glyphicon glyphicon-comment glyphinfo" style="margin-top:2px"></span>
+                            </div>
+                            <div class="col-xs-11 glyphtext">
+                            Visit other profiles to see which books you share and to start conversations.
+                            </div>
+                        </div>
+                        
+                        <div class="row" style="margin-bottom:10px">
+                            <div class="col-xs-1">
+                                <span class="glyphicon glyphicon-envelope glyphinfo" style="margin-top:2px">
+                                </span>
+                            </div>
+                            <div class="col-xs-11 glyphtext">
+                            View your conversation history on your messages page.
+                            </div>
+                        </div>
+                        
+                        <div class="row" style="margin-bottom:10px">
+                            <div class="col-xs-1">
+                                <span class="glyphicon glyphicon-list-alt glyphinfo" style="margin-top:2px"></span>
+                            </div>
+                            <div class="col-xs-11 glyphtext">
+                            Track your book exchange history on your requests page.
+                            </div>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+            </div>
+            <div class="col-lg-2 col-md-3">
+                <div class="panel panel-primary" style="border-color:#dddddd; border-radius: 5px">
                     <div class="panel-heading" style="background-color:#f5f5f5; border:none;">
                         <div class="row">
                             <div class="col-xs-3">
@@ -24,9 +101,9 @@
                     </a>
                 </div>
             </div>
-
-            <div class="col-lg-3 col-md-6">
-                <div class="panel panel-green" style="border-color:#f5f5f5; border-radius: 5px">
+            
+            <div class="col-lg-2 col-md-3" style="margin-top:41px">
+                <div class="panel panel-green" style="border-color:#dddddd; border-radius: 5px">
                     <div class="panel-heading" style="background-color:#f5f5f5; border:none;">
                         <div class="row">
                             <div class="col-xs-3">
@@ -47,5 +124,13 @@
                 </div>
             </div>
         </div>
-    </div>
+        </div>
+
+        <div class="row" style="margin-top:30px">
+
+        </div>
+        <div class="row" style="margin-top:30px">
+
+        </div>
+
 </template>

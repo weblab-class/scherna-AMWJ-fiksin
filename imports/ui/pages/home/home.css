@@ -2,8 +2,19 @@
 
 .panel-footer {
     color:#333333;
+    background-color: white;
 }
 
 .panel-footer:hover {
     color:#d9534f;
+}
+
+.glyphinfo {
+	color:#777777 !important;
+}
+
+.glyphtext {
+	font-family: 'Nunito', sans-serif;
+	font-weight: 300;
+	color:#777777;
 }
