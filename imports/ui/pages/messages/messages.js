@@ -13,6 +13,9 @@ Template.messages.onCreated(function() {
 Template.messages.helpers({
     hasConversations() {
         return Meteor.user().conversations().count() > 0;
+    },
+    pathToUserProfile() {
+        return FlowRouter.path("App.profile", {_id: this.user()._id});
     }
 });
 

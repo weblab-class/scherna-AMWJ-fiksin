@@ -2,9 +2,9 @@
     cursor: pointer;
 }
 
-.conversation:hover {
+/*.conversation:hover {
     background-color: rgba(255,220,220,.3);
-}
+}*/
 
 .btn-danger {
     color: #fff;

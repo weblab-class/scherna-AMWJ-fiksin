@@ -15,6 +15,9 @@ Template.conversation.helpers({
     },
     isYou() {
         return this.user().username === Meteor.user().username;
+    },
+    pathToUserProfile() {
+        return FlowRouter.path("App.profile", {_id: this.user()._id});
     }
 });
 
