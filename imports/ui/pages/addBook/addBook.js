@@ -65,19 +65,26 @@ Template.addBook.events({
                             results[index] = {itemAttributes, bookUrl, summary, imgUrl, bookTitle, bookAuthor, isbn, pageCount};
                         } catch (err) {}
                     });
-                    modalHTML += `</form></table>`;
-                    bootbox.confirm({
-                        title: "Which book did you mean?",  
-                        message: modalHTML, 
-                        callback: function(result) {
-                            if (result) {
-                                const index = $('input[name=option]:checked').val() || 0;
-                                const correctBook = results[index]
-                                Meteor.call('books.create', shelfId, correctBook.bookTitle, correctBook.bookAuthor, correctBook.isbn, correctBook.pageCount, correctBook.summary, correctBook.bookUrl, correctBook.imgUrl, function () {
-                                });
+                    if (! $.isEmptyObject(results)) {
+                        modalHTML += `</form></table>`;
+                        bootbox.confirm({
+                            title: "Which book did you mean?",  
+                            message: modalHTML, 
+                            callback: function(result) {
+                                if (result) {
+                                    const index = $('input[name=option]:checked').val() || 0;
+                                    const correctBook = results[index]
+                                    Meteor.call('books.create', shelfId, correctBook.bookTitle, correctBook.bookAuthor, correctBook.isbn, correctBook.pageCount, correctBook.summary, correctBook.bookUrl, correctBook.imgUrl, function () {
+                                    });
+                                    target.title.value = '';
+                                    target.author.value = '';
+                                }
                             }
+                        });
                         }
-                    });
+                    else {
+                        throw "Error";
+                    }
                 }
                 catch(err) {
                     bootbox.alert("We could not find a book matching your specifications. Try using the ISBN!");
@@ -86,15 +93,12 @@ Template.addBook.events({
                 }
             }
         });
-        target.title.value = '';
-        target.author.value = '';
     },
     'submit #addBookByISBN'(event) {
         event.preventDefault();
         const shelfId = Template.instance().shelf._id;
         const target = event.target;
-        const isbn = target.isbn.value;
-
+        const isbn = target.isbn.value.replace('-', '');
         Meteor.call('amazonAPI.getBookByISBN', isbn, function (err, res) {
             if (err) {
                 bootbox.alert("We could not find a book matching your specifications. Try using the ISBN!");
@@ -146,6 +150,7 @@ Template.addBook.events({
                                 const correctBook = results[index]
                                 Meteor.call('books.create', shelfId, correctBook.bookTitle, correctBook.bookAuthor, correctBook.isbn, correctBook.pageCount, correctBook.summary, correctBook.bookUrl, correctBook.imgUrl, function () {
                                 });
+                                target.isbn.value = '';
                             }
                         }
                     });
@@ -157,6 +162,5 @@ Template.addBook.events({
                 }
             }
         });
-        target.isbn.value = '';
     }
 });
