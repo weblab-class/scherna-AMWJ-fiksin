@@ -18,7 +18,15 @@ SearchSource.defineSource('searchResults', function (searchText, options) {
         })
     };
     query["$and"].push({ owner: { $ne: Meteor.userId() } });
-    return Books.find(query, {limit: 20, skip: 20 * pageNumber }).fetch();
+    const results = Books.find(query, { limit: 24, skip: 24 * pageNumber });
+
+    return {
+        data: results.fetch(),
+        metadata: {
+            total: Books.find(query).count(),
+            page: pageNumber
+        }
+    };
 });
 
 function buildRegExp(searchText) {

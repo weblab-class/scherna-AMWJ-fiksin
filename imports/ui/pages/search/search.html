@@ -68,6 +68,14 @@
                 </tr>
                 {{/each}}
             </table>
+            <div class="col-xs-2 col-offset-xs-5">
+                {{#if showPreviousArrow}}
+                <span class="glyphicon glyphicon-arrow-left previous"></span>
+                {{/if}}
+                {{#if showNextArrow}}
+                <span class="glyphicon glyphicon-arrow-right next"></span>
+                {{/if}}
+            </div>
         </div>
       </div>
     </div>

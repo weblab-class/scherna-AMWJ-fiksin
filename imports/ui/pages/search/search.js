@@ -15,7 +15,8 @@ Template.search.onCreated(function () {
     Meteor.subscribe('bookRequests.fromYou');
     Meteor.subscribe('books.yours');
     Meteor.subscribe('userData');
-    PackageSearch.search($("#q").val() || "", {page: 0});
+    searchPage = new ReactiveVar(0);
+    PackageSearch.search($("#q").val() || "", {page: searchPage.get()});
 });
 
 Template.search.helpers({
@@ -39,6 +40,13 @@ Template.search.helpers({
     },
     alreadyRequested() {
         return BookRequests.find({ bookId: this._id, fromUserId: Meteor.userId() }).count() > 0;
+    },
+    showNextArrow() {
+        const metadata = PackageSearch.getMetadata();
+        return (metadata.page + 1) * 24 < metadata.total;
+    },
+    showPreviousArrow() {
+        return PackageSearch.getMetadata().page > 0;
     }
 });
 

@@ -56,7 +56,7 @@ Template.App_body.events({
     'submit .searchForm'(event) {
         event.preventDefault();
         if (FlowRouter.getRouteName() == "App.search") {
-            PackageSearch.search(event.target.q.value);
+            PackageSearch.search(event.target.q.value, { page: 0 });
         }
         else {
             FlowRouter.go("/search");
