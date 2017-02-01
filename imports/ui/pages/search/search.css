@@ -205,3 +205,11 @@ Hover the image
   transition: background-color 0.3s ease;
   background-color:#d9534f;
 }
+
+.titleBox {
+    position:absolute;
+    top:50%;
+    transform:translate(0, -50%);
+    text-align: center;
+    width: 100%;
+}
