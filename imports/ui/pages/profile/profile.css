@@ -9,12 +9,86 @@
     font-weight: 300;
 }
 
-.setLocation: hover{
+.btn: hover{
     background-color: #d9534f;
     border-color: #d9534f;
     color: white;
     transition: 0.5s;
     font-family: 'Nunito', sans-serif;
+    font-weight: 300; 
+}
+
+.setLocation {
+    border-radius: 5px;
+    border: none;
+    border-color: #f8f8f8;
+    background-color: #f8f8f8;
+    color: #333333;
+    font-family: 'Nunito', sans-serif;
     font-weight: 300;
 }
 
+.setLocation:hover {
+    background-color: white;
+    border-color: white;
+    border: none;
+    color: #d9534f;
+    transition: 0.3s;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
+}
+
+.messageBtn {
+    border-radius: 5px;
+    border-color: #f8f8f8;
+    background-color: #f8f8f8;
+    color: #333333;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
+}
+
+.messageBtn: hover{
+    background-color: white;
+    border-color: white;
+    color: #d9534f;
+    transition: 0.3s;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
+}
+
+.bookTitle {
+    padding-top:40px;
+    padding-bottom: 40px;
+    background-color: #cccccc;
+    border: 0;
+}
+
+.bookTitle:hover{
+    background-color: #d9534f;
+    border: 0;
+    transition: 0.3s;
+}
+
+h5 {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
+    color: #333333;
+}
+
+.scrollmenu {
+    background-color: #f8f8f8;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.scrollmenu a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+}
+
+.scrollmenu a:hover {
+    background-color: #d9534f;
+}

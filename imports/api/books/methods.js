@@ -21,6 +21,12 @@ Meteor.methods({
         if (shelf) {
             bookObject.shelf = shelf._id;
         }
+        if (Meteor.user().location) {
+            bookObject.location = Meteor.user().location;
+        }
+        else {
+            bookObject.location = { Latitude: 42.349259, Longitude: -71.078711 };
+        }
         return Books.insert(bookObject);
     },
     'books.delete'(id) {
