@@ -29,7 +29,7 @@ Template.library.helpers({
         return Meteor.userId() && Meteor.userId() == FlowRouter.getParam("_id");
     },
     shelves() {
-        return Shelves.find({ owner: FlowRouter.getParam("_id") });
+        return Shelves.find({ owner: FlowRouter.getParam("_id"), profileOnly: {$exists: false}});
     },
     booksOnShelf() {
         return Books.find({ owner: FlowRouter.getParam("_id"), shelf: this._id });

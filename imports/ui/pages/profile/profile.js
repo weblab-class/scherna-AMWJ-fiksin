@@ -1,9 +1,12 @@
 import { Meteor } from 'meteor/meteor';
+import { Shelves } from '/imports/api/shelves/shelves.js';
+import { Books } from '/imports/api/books/books.js';
 import './profile.html';
 import './profile.css';
 
 Template.profile.onCreated(function () {
     Meteor.subscribe('userData');
+    Meteor.subscribe('shelves.all');
 });
 
 Template.profile.helpers({
@@ -45,6 +48,56 @@ Template.profile.helpers({
     },
     isMyAccount() {
         return Meteor.userId() && Meteor.userId() == FlowRouter.getParam("_id");
+    },
+    favoriteBooks() {
+        const shelf = Shelves.findOne({owner: FlowRouter.getParam("_id"), name: 'Favorite Books'});
+        if (shelf) {
+            return shelf;
+        }
+        else {
+            Meteor.call('shelves.createForProfile', 'Favorite Books', FlowRouter.getParam("_id"));
+            return Shelves.findOne({owner: FlowRouter.getParam("_id"), name: 'Favorite Books'});
+        }
+    },
+    readingList() {
+        const shelf = Shelves.findOne({owner: FlowRouter.getParam("_id"), name: 'Reading List'});
+        if (shelf) {
+            return shelf;
+        }
+        else {
+            Meteor.call('shelves.createForProfile', 'Reading List', FlowRouter.getParam("_id"));
+            return Shelves.findOne({owner: FlowRouter.getParam("_id"), name: 'Reading List'});
+        }
+    },
+    recommendations() {
+        const shelf = Shelves.findOne({owner: FlowRouter.getParam("_id"), name: 'Recommendations'});
+        if (shelf) {
+            return shelf;
+        }
+        else {
+            Meteor.call('shelves.createForProfile', 'Recommendations', FlowRouter.getParam("_id"));
+            return Shelves.findOne({owner: FlowRouter.getParam("_id"), name: 'Recommendations'});
+        }
+    },
+    booksOnShelf() {
+        return Books.find({ owner: FlowRouter.getParam("_id"), shelf: this._id });
+    },
+    pathForAddBook() {
+        return FlowRouter.path("App.addBook", {_id: this._id});
+    },
+    booksWeShare() {
+        const myBooks = Books.find({owner:Meteor.userId()});
+        const myIsbns = [];
+        myBooks.forEach(function (book) {
+            myIsbns.push(book.isbn);
+        });
+        const sharedBooks = [];
+        Books.find({owner: FlowRouter.getParam("_id")}).forEach(function (book) {
+            if (myIsbns.includes(book.isbn)) {
+                sharedBooks.push(book);
+            }
+        });
+        return sharedBooks;
     }
 });
 
@@ -71,5 +124,9 @@ Template.profile.events({
         navigator.geolocation.getCurrentPosition(function (position) {
             Meteor.call('userData.updateLocation', Number(position.coords.longitude), Number(position.coords.latitude));
         });
+    },
+    'click .bookTitle'(event) {
+        bootbox.alert({message: "<div id='dialogNode'></div>", backdrop:true});
+        Blaze.renderWithData(Template.bookModal, this, $("#dialogNode")[0]);
     }
 });

@@ -20,6 +20,22 @@ Meteor.methods({
             owner: Meteor.userId()
         });
     },
+    'shelves.createForProfile'(name, owner) {
+        check(name, String);
+        const shelf = Shelves.findOne({
+            name,
+            owner: Meteor.userId()
+        });
+        if (shelf) {
+            throw new Meteor.Error("shelf-exists",
+                "This shelf already exists.");
+        }
+        return Shelves.insert({
+            name,
+            owner,
+            profileOnly: true
+        });
+    },
     'shelves.delete'(shelfId) {
         check(shelfId, String);
         const shelf = Shelves.findOne(shelfId);
