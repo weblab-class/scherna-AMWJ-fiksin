@@ -48,7 +48,7 @@
 }
 
 
-.messageBtn {
+.libraryBtn {
     border-radius: 5px;
     border-color: #f8f8f8;
     background-color: #f8f8f8;
@@ -58,6 +58,15 @@
 }
 
 .messageBtn:hover{
+    background-color: white;
+    border-color: white;
+    color: #d9534f;
+    transition: 0.3s;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
+}
+
+.libraryBtn:hover{
     background-color: white;
     border-color: white;
     color: #d9534f;

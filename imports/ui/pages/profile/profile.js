@@ -37,7 +37,7 @@ Template.profile.helpers({
             return 0;
         }
     },
-    pathForLibrary() {
+    pathToUserLibrary() {
         return FlowRouter.path("App.library", { _id: FlowRouter.getParam("_id") });
     },
     pathForProfile() {
@@ -128,5 +128,12 @@ Template.profile.events({
     'click .bookTitle'(event) {
         bootbox.alert({message: "<div id='dialogNode'></div>", backdrop:true});
         Blaze.renderWithData(Template.bookModal, this, $("#dialogNode")[0]);
+    },
+    'click .messageBtn'(event) {
+        const userToAdd = Meteor.users.findOne({_id: FlowRouter.getParam("_id")});
+        const convo = new Conversation().save();
+        convo.addParticipant(userToAdd);
+        convo.sendMessage("Hi!");
+        FlowRouter.go("App.conversation", {_id: convo._id});
     }
 });

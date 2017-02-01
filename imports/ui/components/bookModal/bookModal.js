@@ -16,8 +16,8 @@ Template.bookModal.helpers({
     alreadyRequested() {
         return BookRequests.find({ bookId: this._id, fromUserId: Meteor.userId() }).count() > 0;
     },
-    pathToUserLibrary() {
-        return FlowRouter.path("App.library", {_id: this.owner});
+    pathToUserProfile() {
+        return FlowRouter.path("App.profile", {_id: this.owner});
     },
     username() {
         return Meteor.users.findOne(this.owner).username;
