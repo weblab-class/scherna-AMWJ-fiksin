@@ -36,6 +36,15 @@ Template.App_body.helpers({
     pathForMessages() {
         return FlowRouter.path("App.messages");
     },
+    username() {
+        if (Meteor.user().username) {
+            return Meteor.user().username;
+        }
+        else if (Meteor.user().services.facebook) {
+            return Meteor.user().services.facebook.name;
+        }
+        return "Current User";
+    }
 });
 
 Template.App_body.events({
