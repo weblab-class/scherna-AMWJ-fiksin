@@ -21,6 +21,9 @@ Template.bookModal.helpers({
     },
     username() {
         return Meteor.users.findOne(this.owner).username;
+    },
+    isYours() {
+        return Meteor.users.findOne(this.owner).username === Meteor.user().username;
     }
 });
 
@@ -31,6 +34,13 @@ Template.bookModal.events({
     'click .deleteRequestButton'(event) {
         const bookRequestId = BookRequests.findOne({ bookId: this._id, fromUserId: Meteor.userId() })._id;
         Meteor.call('bookRequests.delete', bookRequestId);
+    },
+    'click .deleteBook'(event) {
+        Meteor.call('books.delete', this._id);
+        $('.modal').modal('hide');
+    },
+    'click .link'(event) {
+        $('.modal').modal('hide');
     }
 });
 

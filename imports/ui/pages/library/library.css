@@ -74,16 +74,23 @@
 }
 
 .bookTitle {
-    padding-top:40px;
-    padding-bottom: 40px;
+    padding-top:50px;
+    padding-bottom: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
     background-color: #cccccc;
-    border: 0;
+    background-position: center;
+    background-size: cover;
+    border: 1px solid #333333;
+    border-radius: 1px;
+    transition: 0.4s;
 }
 
 .bookTitle:hover{
     background-color: #d9534f;
-    border: 0;
-    transition: 0.3s;
+    padding-left:30px;
+    padding-right: 30px;
+    transition: 0.4s;
 }
 
 #deModal {

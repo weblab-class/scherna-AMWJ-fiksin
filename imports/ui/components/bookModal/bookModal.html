@@ -6,11 +6,15 @@
             <h5 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; text-align: left; margin-top:13px">by {{author}}</h5>
             <h5 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; text-align: left; margin-top:13px">ISBN: {{isbn}}</h5>
             <h5 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; text-align: left; margin-top:13px">{{pageCount}} pages</h5>
-            <h5 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; text-align: left; margin-top:13px">Owned by <a href="{{pathToUserLibrary}}">{{username}}</a></h5>
+            <h5 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; text-align: left; margin-top:13px">Owned by <a class="link" href="{{pathToUserLibrary}}">{{username}}</a></h5>
             {{#if alreadyRequested}}
-                <button class="button deleteRequestButton" style="float:left; margin-top:4px; margin-right: 5px; border:0">Delete Request</button>
+                <button class="button deleteRequestButton" style="position:absolute;right:10px;top:150px; margin-top:4px; margin-right: 5px; border:0">Delete Request</button>
             {{else}}
-                <button class="button requestBookButton" style="float:left; margin-top:4px; margin-right: 5px; border:0">Request</button>
+                {{#if isYours}}
+                    <button type="button" class="button btn-danger deleteBook" style="position:absolute;right:10px;top:150px;margin-top:4px; margin-bottom:4px;">Remove Book from Library</button>
+                {{else}}
+                    <button class="button requestBookButton" style="position:absolute;right:10px;top:150px; margin-top:4px; margin-right: 5px; border:0">Request</button>
+                {{/if}}
             {{/if}}
         </div>
         <div class="row" style="margin-top:20px;">

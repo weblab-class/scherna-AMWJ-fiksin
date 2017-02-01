@@ -14,7 +14,7 @@ Meteor.methods({
             sort: 'relevancerank',
             responseGroup: 'ItemAttributes,Images,EditorialReview'
         });
-        return items[0];
+        return items.slice(0,3);
     },
     'amazonAPI.getBookByISBN'(isbn) {
         var client = AmazonProductApi.createClient({

@@ -40,9 +40,9 @@ FlowRouter.route('/profile/:_id', {
     },
 });
 
-FlowRouter.route('/addBook', {
+FlowRouter.route('/addBook/:_id', {
     name: 'App.addBook',
-    action() {
+    action(params) {
         BlazeLayout.render('App_body', { page: 'addBook' });
     },
 });

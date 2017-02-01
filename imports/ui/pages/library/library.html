@@ -12,7 +12,7 @@
             <div class="col-xs-12">
                 <h2 style="text-align:center; font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400;">{{username}}'s Library</h2>
                 {{#if isMyAccount}}
-                    <a href="{{pathForAddBook}}" class="btn btn-default pull-right">Add Book</a>
+                    
                 {{/if}}
             </div>
         {{/with}}
@@ -20,7 +20,7 @@
     <br>
     <div class="row row-centered">
             <!-- BOOK PREVIEW -->
-                <div class="col-xs-12 col-sm-6 col-md-4">
+                <!--<div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="well" style="background-color: #f8f8f8; height: 358px; width: 300px; overflow-y:scroll">
                         {{#if showPreview}}
                             {{#with currentBook}}
@@ -47,9 +47,9 @@
                             {{/with}}
                         {{/if}}
                     </div>
-                </div>
+                </div>-->
             <!-- END OF BOOK PREVIEW -->        
-        {{#with unsortedBooks}}
+        <!--{{#with unsortedBooks}}
             {{#if this.count}}
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div id="deModal" class="well" style="background-color: #F8F8F8">
@@ -71,14 +71,23 @@
                     </div>
                 </div>
             {{/if}}
-        {{/with}}
+        {{/with}}-->
         {{#each shelves}}
         <div class="col-xs-12 col-sm-6 col-md-4">
             <div class="well" style="background-color: #F8F8F8">
-                <h4 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; margin-top: 0px; margin-bottom: 20px;">{{name}}</h4>
-                <div class="scrollmenu">
+                <div class="row" style="margin-bottom: 15px">
+                    <div class="col-md-4 col-md-offset-4">
+                        <h4 class="" style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; margin-top: 0px;">
+                            {{name}}
+                        </h4>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="{{pathForAddBook}}" class="btn btn-default">Add Book</a>
+                    </div>
+                </div>
+                <div class="row scrollmenu">
                     {{#each booksOnShelf}}
-                        <button class="bookTitle"></button>
+                        <button class="bookTitle" style="background-image:url({{imageUrl}});"></button>
                     {{else}}
                     {{#if isMyAccount}}
                     This shelf is empty.

@@ -47,7 +47,7 @@ Template.library.helpers({
         return FlowRouter.path("App.requests");
     },
     pathForAddBook() {
-        return FlowRouter.path("App.addBook");
+        return FlowRouter.path("App.addBook", {_id: this._id});
     },
     showPreview() {
         return currentBookId.get() != null;
@@ -78,8 +78,12 @@ Template.library.events({
     'click .deleteShelfButton'(event) {
         Meteor.call('shelves.delete', this._id);
     },
-    'click .bookTitle'(event) {
+    'mouseenter .bookTitle'(event) {
         currentBookId.set(this._id);
+    },
+    'click .bookTitle'(event) {
+        bootbox.alert({message: "<div id='dialogNode'></div>", backdrop:true});
+        Blaze.renderWithData(Template.bookModal, this, $("#dialogNode")[0]);
     },
     'click .closeButton'(event) {
         currentBookId.set(null);
