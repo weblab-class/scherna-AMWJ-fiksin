@@ -70,12 +70,21 @@
                 </tr>
                 {{/each}}
             </table>
-            <div class="col-xs-2 col-xs-offset-5">
+            <div class="col-xs-12 text-center paginationControls">
                 {{#if showPreviousArrow}}
-                <span class="glyphicon glyphicon-arrow-left previous"></span>
+                <span class="previous">
+                    <span class="glyphicon glyphicon-arrow-left pageArrow"></span>
+                    <span>Previous</span>
+                </span>
+                    {{#if showNextArrow}}
+                        -
+                    {{/if}}
                 {{/if}}
                 {{#if showNextArrow}}
-                <span class="glyphicon glyphicon-arrow-right next"></span>
+                <span class="next">
+                    <span>Next</span>
+                    <span class="glyphicon glyphicon-arrow-right pageArrow"></span>
+                </span>
                 {{/if}}
             </div>
         </div>

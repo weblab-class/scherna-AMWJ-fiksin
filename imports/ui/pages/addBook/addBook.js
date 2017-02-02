@@ -75,6 +75,7 @@ Template.addBook.events({
                                     const index = $('input[name=option]:checked').val() || 0;
                                     const correctBook = results[index]
                                     Meteor.call('books.create', shelfId, correctBook.bookTitle, correctBook.bookAuthor, correctBook.isbn, correctBook.pageCount, correctBook.summary, correctBook.bookUrl, correctBook.imgUrl, function () {
+                                        target.title.focus();
                                     });
                                     target.title.value = '';
                                     target.author.value = '';
@@ -87,7 +88,9 @@ Template.addBook.events({
                     }
                 }
                 catch(err) {
-                    bootbox.alert("We could not find a book matching your specifications. Try using the ISBN!");
+                    bootbox.alert("We could not find a book matching your specifications. Try using the ISBN!", function () {
+                        target.title.focus();
+                    });
                     console.log(err);
                     console.log(res);
                 }
