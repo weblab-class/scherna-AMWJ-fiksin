@@ -7,6 +7,7 @@ import './requests.css'
 Template.requests.onCreated(function () {
     Meteor.subscribe('bookRequests.fromYou');
     Meteor.subscribe('bookRequests.toYou');
+    Meteor.subscribe('userData');
 });
 
 Template.requests.helpers({
