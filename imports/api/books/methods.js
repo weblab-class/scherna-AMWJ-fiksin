@@ -5,7 +5,7 @@ import { Shelves } from '../shelves/shelves.js';
 import { BookRequests } from '../bookRequests/bookRequests.js';
 
 Meteor.methods({
-    'books.create'(shelfId, title, author, isbn, pageCount, summary, bookUrl, imageUrl) {
+    'books.create'(shelfId, title, author, isbn, pageCount, summary, bookUrl, imageUrl, profileOnly) {
         const shelf = Shelves.findOne({ _id: shelfId, owner: Meteor.userId() });
         var bookObject = {
             title,
@@ -15,6 +15,7 @@ Meteor.methods({
             summary,
             bookUrl,
             imageUrl,
+            profileOnly,
             private: false,
             createdAt: new Date(),
             owner: Meteor.userId()

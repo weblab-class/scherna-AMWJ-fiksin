@@ -20,6 +20,7 @@ Template.addBook.events({
     'submit #addBookByTitle'(event) {
         event.preventDefault();
         const shelfId = Template.instance().shelf._id;
+        const isProfileOnly = Shelves.findOne(shelfId).profileOnly || false;
         const target = event.target;
         const title = target.title.value;
         const author = target.author.value;
@@ -74,7 +75,7 @@ Template.addBook.events({
                                 if (result) {
                                     const index = $('input[name=option]:checked').val() || 0;
                                     const correctBook = results[index]
-                                    Meteor.call('books.create', shelfId, correctBook.bookTitle, correctBook.bookAuthor, correctBook.isbn, correctBook.pageCount, correctBook.summary, correctBook.bookUrl, correctBook.imgUrl, function () {
+                                    Meteor.call('books.create', shelfId, correctBook.bookTitle, correctBook.bookAuthor, correctBook.isbn, correctBook.pageCount, correctBook.summary, correctBook.bookUrl, correctBook.imgUrl, isProfileOnly, function () {
                                     });
                                     target.title.value = '';
                                     target.author.value = '';
@@ -100,6 +101,7 @@ Template.addBook.events({
     'submit #addBookByISBN'(event) {
         event.preventDefault();
         const shelfId = Template.instance().shelf._id;
+        const isProfileOnly = Shelves.findOne(shelfId).profileOnly || false;
         const target = event.target;
         const isbn = target.isbn.value.replace('-', '');
         Meteor.call('amazonAPI.getBookByISBN', isbn, function (err, res) {
@@ -151,7 +153,7 @@ Template.addBook.events({
                             if (result) {
                                 const index = $('input[name=option]:checked').val() || 0;
                                 const correctBook = results[index]
-                                Meteor.call('books.create', shelfId, correctBook.bookTitle, correctBook.bookAuthor, correctBook.isbn, correctBook.pageCount, correctBook.summary, correctBook.bookUrl, correctBook.imgUrl, function () {
+                                Meteor.call('books.create', shelfId, correctBook.bookTitle, correctBook.bookAuthor, correctBook.isbn, correctBook.pageCount, correctBook.summary, correctBook.bookUrl, correctBook.imgUrl, isProfileOnly, function () {
                                 });
                                 target.isbn.value = '';
                             }
