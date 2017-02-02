@@ -20,6 +20,7 @@ Template.addBook.events({
     'submit #addBookByTitle'(event) {
         event.preventDefault();
         const shelfId = Template.instance().shelf._id;
+        const isProfileOnly = Shelves.findOne(shelfId).profileOnly || false;
         const target = event.target;
         const title = target.title.value;
         const author = target.author.value;
@@ -67,20 +68,24 @@ Template.addBook.events({
                     });
                     if (! $.isEmptyObject(results)) {
                         modalHTML += `</form></table>`;
-                        bootbox.confirm({
+                        let modal = bootbox.confirm({
                             title: "Which book did you mean?",  
                             message: modalHTML, 
                             callback: function(result) {
                                 if (result) {
                                     const index = $('input[name=option]:checked').val() || 0;
                                     const correctBook = results[index]
-                                    Meteor.call('books.create', shelfId, correctBook.bookTitle, correctBook.bookAuthor, correctBook.isbn, correctBook.pageCount, correctBook.summary, correctBook.bookUrl, correctBook.imgUrl, function () {
+<<<<<<< HEAD
+                                    Meteor.call('books.create', shelfId, correctBook.bookTitle, correctBook.bookAuthor, correctBook.isbn, correctBook.pageCount, correctBook.summary, correctBook.bookUrl, correctBook.imgUrl, isProileOnly, function () {
                                         target.title.focus();
                                     });
                                     target.title.value = '';
                                     target.author.value = '';
                                 }
                             }
+                        });
+                        modal.init(function () {
+                            $("input[name=option]:first").prop("checked", true);
                         });
                         }
                     else {
@@ -100,6 +105,7 @@ Template.addBook.events({
     'submit #addBookByISBN'(event) {
         event.preventDefault();
         const shelfId = Template.instance().shelf._id;
+        const isProfileOnly = Shelves.findOne(shelfId).profileOnly || false;
         const target = event.target;
         const isbn = target.isbn.value.replace('-', '');
         Meteor.call('amazonAPI.getBookByISBN', isbn, function (err, res) {
@@ -128,7 +134,7 @@ Template.addBook.events({
                             let pageCount = 'Unknown';
                             if (itemAttributes.NumberOfPages) {
                                 pageCount = itemAttributes.NumberOfPages[0];
-                            } 
+                            }
                             var optionHTML = `<tr class="">
                                                 <td>
                                                     <input type="radio" name="option" value=${index}>
@@ -144,19 +150,22 @@ Template.addBook.events({
                         } catch (err) {}
                     });
                     modalHTML += `</form></table>`;
-                    bootbox.confirm({
+                    let modal = bootbox.confirm({
                         title: "Which book did you mean?",  
                         message: modalHTML, 
                         callback: function(result) {
                             if (result) {
                                 const index = $('input[name=option]:checked').val() || 0;
                                 const correctBook = results[index]
-                                Meteor.call('books.create', shelfId, correctBook.bookTitle, correctBook.bookAuthor, correctBook.isbn, correctBook.pageCount, correctBook.summary, correctBook.bookUrl, correctBook.imgUrl, function () {
+                                Meteor.call('books.create', shelfId, correctBook.bookTitle, correctBook.bookAuthor, correctBook.isbn, correctBook.pageCount, correctBook.summary, correctBook.bookUrl, correctBook.imgUrl, isProfileOnly, function () {
                                 });
                                 target.isbn.value = '';
                             }
                         }
                     });
+                    modal.init(function () {
+                            $("input[name=option]:first").prop("checked", true);
+                        });
                 }
                 catch(err) {
                     bootbox.alert("We could not find a book matching your specifications. Try using the ISBN!");

@@ -18,7 +18,7 @@ SearchSource.defineSource('searchResults', function (searchText, options) {
         })
     };
     query["$and"].push({ owner: { $ne: Meteor.userId() } });
-    query["$and"].push({ profileOnly: { $exists: false } });
+    query["$and"].push({ profileOnly: { $ne: true } });
     const results = Books.find(query, { limit: 24, skip: 24 * pageNumber });
 
     return {
