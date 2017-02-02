@@ -213,3 +213,16 @@ Hover the image
     text-align: center;
     width: 100%;
 }
+
+.previous,.next {
+    cursor: pointer;
+}
+
+.paginationControls {
+    margin-bottom: 40px;
+}
+
+.pageArrow {
+    margin-left: 5px;
+    margin-right: 5px;
+}
