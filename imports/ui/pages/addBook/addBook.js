@@ -67,7 +67,7 @@ Template.addBook.events({
                     });
                     if (! $.isEmptyObject(results)) {
                         modalHTML += `</form></table>`;
-                        bootbox.confirm({
+                        let modal = bootbox.confirm({
                             title: "Which book did you mean?",  
                             message: modalHTML, 
                             callback: function(result) {
@@ -80,6 +80,9 @@ Template.addBook.events({
                                     target.author.value = '';
                                 }
                             }
+                        });
+                        modal.init(function () {
+                            $("input[name=option]:first").prop("checked", true);
                         });
                         }
                     else {
@@ -125,7 +128,7 @@ Template.addBook.events({
                             let pageCount = 'Unknown';
                             if (itemAttributes.NumberOfPages) {
                                 pageCount = itemAttributes.NumberOfPages[0];
-                            } 
+                            }
                             var optionHTML = `<tr class="">
                                                 <td>
                                                     <input type="radio" name="option" value=${index}>
@@ -141,7 +144,7 @@ Template.addBook.events({
                         } catch (err) {}
                     });
                     modalHTML += `</form></table>`;
-                    bootbox.confirm({
+                    let modal = bootbox.confirm({
                         title: "Which book did you mean?",  
                         message: modalHTML, 
                         callback: function(result) {
@@ -154,6 +157,9 @@ Template.addBook.events({
                             }
                         }
                     });
+                    modal.init(function () {
+                            $("input[name=option]:first").prop("checked", true);
+                        });
                 }
                 catch(err) {
                     bootbox.alert("We could not find a book matching your specifications. Try using the ISBN!");
