@@ -41,6 +41,7 @@
 .messageBtn {
     border-radius: 5px;
     border-color: #f8f8f8;
+    border: none;
     background-color: #f8f8f8;
     color: #333333;
     font-family: 'Nunito', sans-serif;
@@ -51,6 +52,7 @@
 .libraryBtn {
     border-radius: 5px;
     border-color: #f8f8f8;
+    border: none;
     background-color: #f8f8f8;
     color: #333333;
     font-family: 'Nunito', sans-serif;
@@ -97,4 +99,8 @@ h5 {
 
 .scrollmenu a:hover {
     background-color: #d9534f;
+}
+
+button a {
+    color: black;
 }

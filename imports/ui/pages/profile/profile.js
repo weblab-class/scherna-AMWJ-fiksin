@@ -7,6 +7,7 @@ import './profile.css';
 Template.profile.onCreated(function () {
     Meteor.subscribe('userData');
     Meteor.subscribe('shelves.all');
+    Meteor.subscribe('books.public');
 });
 
 Template.profile.helpers({

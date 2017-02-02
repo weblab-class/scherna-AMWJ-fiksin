@@ -1,5 +1,5 @@
 ﻿<template name="bookModal">
-    <div class="container" style="">
+    <div class="container">
         <div class="row" style="text-align:justify;white-space: normal;">
             <img src="{{imageUrl}}" class="img-responsive" alt="Book Title" style="float:left; margin-top: 4px; width:120px;height:160px; margin-right: 20px">
             <a href="{{bookUrl}}"><h4 style="font-family: 'Nunito', sans-serif; font-weight: 400; text-align: left; margin-top: 5px;">{{title}}</h4></a>
@@ -11,15 +11,21 @@
                 <button class="button deleteRequestButton" style="position:absolute;right:20px;top:150px; margin-top:4px; margin-right: 5px; border:0">Delete Request</button>
             {{else}}
                 {{#if isYours}}
-                    <button type="button" class="button btn-danger deleteBook" style="position:absolute;right:20px;top:150px;margin-top:4px; margin-bottom:4px;">Remove Book from Library</button>
+                    {{#if profileOnly}}
+                        <button type="button" class="button btn-danger deleteBook" style="position:absolute;right:20px;top:150px;margin-top:4px; margin-bottom:4px;">Remove Book from Profile</button>
+                    {{else}}
+                        <button type="button" class="button btn-danger deleteBook" style="position:absolute;right:20px;top:150px;margin-top:4px; margin-bottom:4px;">Remove Book from Library</button>
+                    {{/if}}
                 {{else}}
-                    <button class="button requestBookButton" style="position:absolute;right:20px;top:150px; margin-top:4px; margin-right: 5px; border:0">Request</button>
+                    {{#unless profileOnly}}
+                        <button class="button requestBookButton" style="position:absolute;right:20px;top:150px; margin-top:4px; margin-right: 5px; border:0">Request</button>
+                    {{/unless}}
                 {{/if}}
             {{/if}}
         </div>
         <div class="row" style="margin-top:20px;">
             <div class="bookDescription" style="text-align:justify;white-space: normal;">
-                <span style="">{{stripHTML summary}}</span>
+                <span>{{stripHTML summary}}</span>
             </div>
         </div>
     </div>

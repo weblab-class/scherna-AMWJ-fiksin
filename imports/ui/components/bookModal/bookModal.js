@@ -1,6 +1,7 @@
 ﻿import { Books } from '/imports/api/books/books.js';
 import { Meteor } from 'meteor/meteor';
 import { BookRequests } from '/imports/api/bookRequests/bookRequests.js';
+import { Shelves } from '/imports/api/shelves/shelves.js';
 import './bookModal.html';
 import './bookModal.css'
 
@@ -24,7 +25,7 @@ Template.bookModal.helpers({
     },
     isYours() {
         return Meteor.users.findOne(this.owner).username === Meteor.user().username;
-    }
+    },
 });
 
 Template.bookModal.events({
