@@ -1,33 +1,35 @@
 <template name="profile">
     {{#if userExists}}
     <div class="container-fluid">
-    <div class="jumbotron" style="background-color: #d9534f; margin-left:-90px; margin-right: -90px; margin-top: -30px; padding-bottom: 90px">
-        {{#with userExists}}
-            <h2 style="text-align:center; font-family: 'Nunito', sans-serif; color: white; font-weight: 400; margin-top: -20px;">{{username}}'s Profile</h2>
-        {{/with}}
-            <!--<div class="col-xs-offset-1 col-xs-10" style="text-align: center; font-family: 'Nunito', sans-serif; font-weight: 300; color: white">
-                Current weeks a user may borrow books: {{requestWeeks}}. 
-                {{#if isMyAccount}}
-                    <form id="requestWeeksForm">
-                        New value: <input name="newValue" type="text"> <input type="submit" style="background-color:#ebebeb; color: #333333; border:0; border-radius:5px">
-                    </form>
-                {{/if}}
-            </div>-->
-
-            <div class="col-xs-offset-2 col-xs-8">
-                {{#if isMyAccount}}
-                    <button class="setLocation center-block" style="margin-top: 10px">Set Location to Here</button>
-                {{/if}}
+        <div class="jumbotron" style="background-color: #d9534f; margin-left:-90px; margin-right: -90px; margin-top: -30px;">
+            <div class="row">
+                {{#with userExists}}
+                    {{#unless isMyAccount}}
+                        <h2 style="text-align:center; font-family: 'Nunito', sans-serif; color: white; font-weight: 400; margin-top: -15px;">{{username}}'s Profile</h2>
+                    {{else}}
+                        <h2 style="text-align:center; font-family: 'Nunito', sans-serif; color: white; font-weight: 400; margin-top: -15px;">Your Profile</h2>
+                    {{/unless}}
+                {{/with}}
             </div>
-            <div class="col-xs-offset-2 col-xs-8">
-                {{#unless isMyAccount}}
-                    <button class="libraryBtn center-block" style="margin-top:10px"><a href={{pathToUserLibrary}}>Go to my Library!</a></button>
-                    <button class="messageBtn center-block" style="margin-top:10px">Message Me!</button>
-                {{/unless}}
+            <div class="row" style="margin-bottom:10px;">
+                <div class="col-xs-offset-2 col-xs-8">
+                    {{#if isMyAccount}}
+                        <button class="setLocation center-block" style="margin-bottom:-10px;">Set Location to Here</button>
+                    {{else}}
+                        {{#with userExists}}
+                            <button class="libraryBtn center-block"><a href={{pathToUserLibrary}}>Go to {{username}}'s Library!</a></button>
+                        {{/with}}
+                    {{/if}}
+                </div>
             </div>
-    </div>
-    </div>
-    <div class="container">
+            <div class="row" style="margin-bottom:-25px;">
+                <div class="col-xs-offset-2 col-xs-8">
+                    {{#unless isMyAccount}}
+                        <button class="messageBtn center-block">Message Me!</button>
+                    {{/unless}}
+                </div>
+            </div>
+        </div>
         <div class="row row-centered">
             {{#with favoriteBooks}}
             <div class="col-xs-12 col-sm-6 col-md-4">
@@ -105,8 +107,7 @@
             </div>
             {{/with}}
         </div>
-        {{#if isMyAccount}}
-        {{else}}
+        {{#unless isMyAccount}}
             <div class="row row-centered">
                 {{#with booksWeShare}}
                     <div class="col-xs-12 col-sm-6 col-md-4 col-md-offset-4">
@@ -129,7 +130,7 @@
                     </div>
                 {{/with}}
             </div>
-        {{/if}}
+        {{/unless}}
     </div>
     {{else}}
         This user does not exist.

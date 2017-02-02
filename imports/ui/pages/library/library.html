@@ -1,116 +1,74 @@
 <template name="library">
     {{#if userExists}}
-    <div class="row">
-        {{#with userExists}}
-            <!--<ul class="nav nav-pills col-xs-10 col-xs-offset-2">
-                <li class="active"><a href="{{pathForLibrary}}">Library</a></li>
-                <li><a href="{{pathForProfile}}">Profile</a></li>
-                {{#if isMyAccount}}
-                    <li><a href="{{pathForRequests}}">Requests</a></li>
-                {{/if}}
-            </ul>-->
-            <div class="col-xs-12" style="text-align:center">
-                <h2 style="text-align:center; font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400;">{{username}}'s Library</h2>
-                {{#unless isMyAccount}}
-                    <a style="text-align:center" href="{{pathForProfile}}" class="btn btn-danger">Go to my profile!</a>
-                {{/unless}}
+    <div class="container-fluid">
+        <div class="jumbotron" style="background-color: #d9534f; margin-left:-90px; margin-right: -90px; margin-top: -30px;">
+            <div class="row" style="margin-bottom:-25px;">
+                {{#with userExists}}
+                    <div class="col-xs-12" style="text-align:center">
+                        {{#unless isMyAccount}}
+                            <h2 style="text-align:center; font-family: 'Nunito', sans-serif; color: white; font-weight: 400; margin-top: -15px;">{{username}}'s Library</h2>
+                            <button class="libraryBtn center-block"><a href={{pathForProfile}}>Go to {{username}}'s' Profile!</a></button>
+                        {{else}}
+                            <h2 style="text-align:center; font-family: 'Nunito', sans-serif; color: white; font-weight: 400; margin-top: -15px;">Your Library</h2>
+                        {{/unless}}
+                    </div>
+                {{/with}}
             </div>
-        {{/with}}
-    </div>
-    <br>
-    <div class="row row-centered">
-            <!-- BOOK PREVIEW -->
-                <!--<div class="col-xs-12 col-sm-6 col-md-4">
-                    <div class="well" style="background-color: #f8f8f8; height: 358px; width: 300px; overflow-y:scroll">
-                        {{#if showPreview}}
-                            {{#with currentBook}}
-                                <div class="bookPreview" style="">
-                                    <div class="row">
-                                        <div class="col-xs-6">
-                                            <img src="{{imageUrl}}" class="img-responsive" alt="Book Title" style="float:left; margin-top: 0px; width:120px;height:160px; margin-right: 20px">
-                                        </div>
-                                        <div class="col-xs-6">
-                                            <h5 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; text-align: left; margin-top: 0px">{{title}}</h5>
-                                            <h5 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; text-align: left; margin-top:13px">{{author}}</h5>
-                                            <button class="button closeButton" style="margin-top:4px; margin-bottom:4px;border:0">Close Preview</button>
-                                            <button type="button" class="button btn-danger deleteBook" style="margin-top:4px; margin-bottom:4px;">Remove Book from Library</button>
-                                        </div>
-                                    </div>
-                                    <div class="row" style="margin-top:10px;">
-                                        <div class="col-xs-12" style="">
-                                            <span style="">{{stripHTML summary }}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            {{/with}}
-                        {{/if}}
-                    </div>
-                </div>-->
-            <!-- END OF BOOK PREVIEW -->        
-        <!--{{#with unsortedBooks}}
-            {{#if this.count}}
-                <div class="col-xs-12 col-sm-6 col-md-4">
-                    <div id="deModal" class="well" style="background-color: #F8F8F8">
-                        <h4 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; margin-top: 0px; margin-bottom: 20px">Unsorted</h4>
-                        <div class="scrollmenu">
-                        {{#each this}}
-                        <button class="bookTitle {{#if isSelected}}selectedBook{{/if}}"></button>
-                        {{/each}}
-                        </div>
+            {{#if isMyAccount}}
+                <div class="row row-centered" style="margin-bottom:-25px;">
+                    <div class="col-xs-12 col-sm-6 col-md-4 col-md-offset-4">
+                        <form class="newShelf input-group">
+                            <input class="form-control" type="text" id="shelfName" name="shelfName" placeholder="Name your new shelf!"/>
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
+                            </span>
+                        </form>
                     </div>
                 </div>
-            {{else}}
-            {{#if shelves.count }}
-            {{else}}
-                {{#if isMyAccount}}
-                <div class="col-xs-12 col-sm-6 col-md-4">
-                    <div id="deModal" class="well" style="background-color: #F8F8F8">
-                        <h4 style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; margin-top: 0px; margin-bottom: 20px">Unsorted</h4>
-                        <div class="scrollmenu">
-                            <h5>Try adding a new book or a new shelf!</h5>
-                        </div>
-                    </div>
-                </div>
-                {{/if}}
             {{/if}}
-            {{/if}}
-        {{/with}}-->
-        {{#each shelves}}
-        <div class="col-xs-12 col-sm-6 col-md-4">
-            <div class="well" style="background-color: #F8F8F8">
-                <div class="row" style="margin-bottom:15px;position:relative;">
-                    <div>
-                        <h4 class="" style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; margin-top: 0px;">
-                            {{name}}
-                        </h4>
-                    </div>
-                    <div style="position:absolute;top:-10px;right:5px">
-                        <a href="{{pathForAddBook}}" class="btn btn-default">Add Book</a>
-                    </div>
-                </div>
-                <div class="row scrollmenu">
-                    {{#each booksOnShelf}}
-                        <button class="bookTitle" style="background-image:url({{imageUrl}});"></button>
-                    {{else}}
-                    {{#if isMyAccount}}
-                        This shelf is empty.
-                        <button class="deleteShelfButton">Delete Shelf</button>
-                    {{/if}}
-                    {{/each}}
-                </div>
-            </div>
         </div>
-        {{/each}}
         {{#if isMyAccount}}
-        <div class="col-xs-12 col-sm-6 col-md-4">
-            <div class="well">
-                <form class="newShelf">
-                    <input type="text" id="shelfName" name="shelfName" placeholder="New Shelf" style="border-color: #ebebeb; border-radius: 5px" />
-                    <input type="submit" class="glyphicon glyphicon-plus" style="font-family: 'Nunito', sans-serif; color: #333333" />
-                </form>
-            </div>
-        </div>
+            {{#if noShelves}}
+                <div class="row">
+                    <div class="alert alert-warning text-center">
+                        <p class="lead">Looks like you don't have any shelves! Create a shelf in order to add books to it.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="alert alert-warning text-center">
+                        <p class="lead">Shelves are how you organize your books in Biblios. You can create a 'Science Fiction' shelf, a 'Harry Potter' shelf, or whatever you choose!</p>
+                    </div>
+                </div>
+            {{/if}}
         {{/if}}
+        <div class="row row-centered">
+            {{#each shelves}}
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div class="well" style="background-color: #F8F8F8">
+                        <div class="row" style="margin-bottom:15px;position:relative;">
+                            <div>
+                                <h4 class="" style="font-family: 'Nunito', sans-serif; color: #333333; font-weight: 400; margin-top: 0px;">
+                                    {{name}}
+                                </h4>
+                            </div>
+                            <div style="position:absolute;top:-10px;right:5px">
+                                <a href="{{pathForAddBook}}" class="btn btn-default">Add Book</a>
+                            </div>
+                        </div>
+                        <div class="row scrollmenu">
+                            {{#each booksOnShelf}}
+                                <button class="bookTitle" style="background-image:url({{imageUrl}});"></button>
+                            {{else}}
+                            {{#if isMyAccount}}
+                                This shelf is empty.
+                                <button class="deleteShelfButton">Delete Shelf</button>
+                            {{/if}}
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
     </div>
     {{else}}
         This user does not exist.
