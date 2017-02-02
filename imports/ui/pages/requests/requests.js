@@ -47,19 +47,19 @@ Template.requests.helpers({
         return Meteor.users.findOne(this.fromUserId).username;
     },
     requestAccepted() {
-        return this.status == "accepted";
+        return this.status === "accepted";
     },
     allowDeleteRequest() {
-        return this.status != "lended";
+        return this.status !== "lended";
     },
     allowAcceptRequest() {
-        return this.status == "requested";
+        return this.status === "requested";
     },
     allowLendingRequest() {
-        return this.status == "accepted";
+        return this.status === "accepted";
     },
     allowReturnRequest() {
-        return this.status == "lended";
+        return this.status === "lended";
     }
 });
 

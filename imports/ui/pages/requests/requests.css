@@ -1,5 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito:300,400);
 
+h4 {
+    font-family: 'Nunito';
+}
+
 .nav-pills > li.active > a{
     background-color: #d9534f;
 }

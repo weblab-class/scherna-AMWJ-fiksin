@@ -5,9 +5,11 @@
             <div class="row" style="margin-bottom:-25px;">
                 {{#with userExists}}
                     <div class="col-xs-12" style="text-align:center">
-                        <h2 style="text-align:center; font-family: 'Nunito', sans-serif; color: white; font-weight: 400; margin-top: -15px;">{{username}}'s Library</h2>
                         {{#unless isMyAccount}}
+                            <h2 style="text-align:center; font-family: 'Nunito', sans-serif; color: white; font-weight: 400; margin-top: -15px;">{{username}}'s Library</h2>
                             <button class="libraryBtn center-block"><a href={{pathForProfile}}>Go to {{username}}'s' Profile!</a></button>
+                        {{else}}
+                            <h2 style="text-align:center; font-family: 'Nunito', sans-serif; color: white; font-weight: 400; margin-top: -15px;">Your Library</h2>
                         {{/unless}}
                     </div>
                 {{/with}}
