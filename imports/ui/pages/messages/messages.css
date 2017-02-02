@@ -16,3 +16,12 @@
     max-height: 100px;
     overflow: hidden;
 }
+
+.glyph-red {
+    margin-left: 10px;
+    color: #d9534f;
+}
+
+.glyph-white {
+    color: #fff;
+}

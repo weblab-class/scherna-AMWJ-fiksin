@@ -6,6 +6,8 @@ import '../../pages/loggedOut/loggedOut.js'
 
 Template.App_body.onCreated(function () {
     Meteor.subscribe('books.yours');
+    Meteor.subscribe('conversationData');
+    Meteor.subscribe('messageData');
 })
 
 Template.App_body.helpers({
@@ -44,6 +46,20 @@ Template.App_body.helpers({
             return Meteor.user().services.facebook.name;
         }
         return "Current User";
+    },
+    unreadConversationCount() {
+        let count = 0;
+        Meteor.user().conversations().forEach(function (convo) {
+            if (convo.isUnread()) {
+                count += 1;
+            }
+        });
+        if (count === 0) {
+            return null;
+        }
+        else {
+            return count;
+        }
     }
 });
 

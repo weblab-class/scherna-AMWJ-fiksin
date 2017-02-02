@@ -7,6 +7,7 @@ Template.conversation.onCreated(function() {
     this.autorun(function() {
         Template.instance().currentConversation = Meteor.conversations.findOne({_id: FlowRouter.getParam("_id")});
     });
+    Meteor.subscribe('viewingConversation', FlowRouter.getParam("_id"));
 });
 
 Template.conversation.helpers({

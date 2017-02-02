@@ -44,3 +44,10 @@
 	font-family: 'Nunito', sans-serif;
 	padding-left:5px;
 }
+
+.label-as-badge {
+	border-radius:1em;
+	margin-left: 5px;
+	position: absolute;
+	top: 16px;
+}

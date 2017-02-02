@@ -1,12 +1,12 @@
 <template name="messages">
   {{#if currentUser}}
     <div class="container">
-      <div class="row">
+      <div class="row" style="margin-bottom:20px;">
         <form class="newConversation">
-          <div class="col-xs-6 input-group panel panel-default pull-right">
-              <input type="text" name="username" placeholder="Enter an existing user's username and start a conversation!" class="form-control">
+          <div class="col-xs-5 col-xs-offset-7 input-group">
+              <input type="text" name="username" placeholder="Enter a user's username and start a conversation!" class="form-control">
               <span class="input-group-btn">
-                  <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></button>
+                  <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-plus glyph-white"></span></button>
               </span>
           </div>
         </form>
@@ -14,24 +14,37 @@
       {{#if hasConversations}}
         {{#each currentUser.conversations}}
           <div class="row">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                {{#each participants}}
-                    <a href={{pathToUserProfile}}><h4 class="pull-left">{{user.username}}</h4></a>
-                {{/each}}
-                <button class="btn-danger btn pull-right deleteConversation">Delete</button>
-                <div class="clearfix"></div>
+            <div class="col-xs-12">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <div class="row">
+                    <div class="col-lg-1">
+                      {{#each participants}}
+                        {{#if ../isUnread}}
+                          <h4><a href={{pathToUserProfile}}>{{user.username}}</a><span class="glyphicon glyphicon-envelope glyph-red"></span></h4>
+                        {{else}}
+                          <h4><a href={{pathToUserProfile}}>{{user.username}}</a></h4>
+                        {{/if}}
+                      {{/each}}
+                    </div>
+                    <div class="col-lg-1 col-lg-offset-10">
+                      <button class="btn-danger btn deleteConversation">Delete</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="conversation panel-body">
+                    {{#with lastMessage}}
+                      <div class="col-xs-1">
+                          <h4>{{user.username}}:</h4>
+                      </div>
+                      <div class="col-xs-11">
+                          <h4 class="lastMessageBody">{{body}}</h4>
+                      </div>
+                    {{/with}}
+                  </div>
+                </div>
               </div>
-              <div class="conversation panel-body">
-                {{#with lastMessage}}
-                  <div class="col-xs-1">
-                      <h4>{{user.username}}:</h4>
-                  </div>
-                  <div class="col-xs-11">
-                      <h4 class="lastMessageBody">{{body}}</h4>
-                  </div>
-                {{/with}}
-              </div>  
             </div>
           </div>
         {{/each}}
