@@ -75,7 +75,6 @@ Template.addBook.events({
                                 if (result) {
                                     const index = $('input[name=option]:checked').val() || 0;
                                     const correctBook = results[index]
-<<<<<<< HEAD
                                     Meteor.call('books.create', shelfId, correctBook.bookTitle, correctBook.bookAuthor, correctBook.isbn, correctBook.pageCount, correctBook.summary, correctBook.bookUrl, correctBook.imgUrl, isProileOnly, function () {
                                         target.title.focus();
                                     });
