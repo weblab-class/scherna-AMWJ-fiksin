@@ -1,55 +1,71 @@
 <template name="requests">
     <div class="row" style="text-align: center">
         <div class="col-xs-6">
-            <h4>Requests To Borrow</h4>
-            <table class="table-hover">
-                {{#each requestsToYou}}
-                <tr>
-                    <td>
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <a href="{{pathForProfileFrom}}">{{requestFromUser}}</a> requested {{requestTitle}}.
-                            </div>
-                            <div class="panel-footer">
-                                {{#if allowDeleteRequest }}
-                                <button class="btn btn-default deleteRequest" style="color:#8a8a8a">Delete</button>
-                                {{/if}}
-                                {{#if allowAcceptRequest }}
-                                <button class="btn btn-primary acceptRequest" style="color:#ffffff">Accept</button>
-                                {{/if}}
-                                {{#if allowLendingRequest }}
-                                <button class="btn btn-primary borrowRequest" style="color:#ffffff">Borrowed</button>
-                                {{/if}}
-                                {{#if allowReturnRequest }}
-                                <button class="btn btn-primary returnRequest" style="color:#ffffff">Returned</button>
-                                {{/if}}
-                            </div>
-                        </div>                        
-                    </td>
-                </tr>
-                {{/each}}
-            </table>
+            {{#if anyRequestsToYou}}
+                <h4>Incoming Requests</h4>
+                <table class="table-hover">
+                    {{#each requestsToYou}}
+                    <tr>
+                        <td>
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <a href="{{pathForProfileFrom}}">{{requestFromUser}}</a> requested {{requestTitle}}.
+                                </div>
+                                <div class="panel-footer">
+                                    {{#if allowDeleteRequest }}
+                                    <button class="btn btn-default deleteRequest" style="color:#8a8a8a">Delete</button>
+                                    {{/if}}
+                                    {{#if allowAcceptRequest }}
+                                    <button class="btn btn-primary acceptRequest" style="color:#ffffff">Accept</button>
+                                    {{/if}}
+                                    {{#if allowLendingRequest }}
+                                    <button class="btn btn-primary borrowRequest" style="color:#ffffff">Borrowed</button>
+                                    {{/if}}
+                                    {{#if allowReturnRequest }}
+                                    <button class="btn btn-primary returnRequest" style="color:#ffffff">Returned</button>
+                                    {{/if}}
+                                </div>
+                            </div>                        
+                        </td>
+                    </tr>
+                    {{/each}}
+                </table>
+            {{else}}
+                <div class="row" style="margin-right:-10px;">
+                    <div class="alert alert-warning text-center">
+                        <p class="lead">Looks like no one has requested any books from you!</p>
+                    </div>
+                </div>
+            {{/if}}
         </div>
         <div class="col-xs-6">
-            <h4>Your Requests</h4>
-            <table class="table-hover">
-                {{#each requestsFromYou}}
-                <tr>
-                    <td>
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                You requested {{requestTitle}} from <a href="{{pathForProfileTo}}">{{requestToUser}}</a>.
-                                {{#if requestAccepted}}
-                                    Accepted.
-                                {{else}}
-                                    Awaiting acceptance.
-                                {{/if}}
-                            </div>
-                        </div>                        
-                    </td>
-                </tr>
-                {{/each}}
-            </table>
+            {{#if anyRequestsFromYou}}
+                <h4>Outgoing Requests</h4>
+                <table class="table-hover">
+                    {{#each requestsFromYou}}
+                    <tr>
+                        <td>
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    You requested {{requestTitle}} from <a href="{{pathForProfileTo}}">{{requestToUser}}</a>.
+                                    {{#if requestAccepted}}
+                                        Accepted.
+                                    {{else}}
+                                        Awaiting acceptance.
+                                    {{/if}}
+                                </div>
+                            </div>                        
+                        </td>
+                    </tr>
+                    {{/each}}
+                </table>
+            {{else}}
+                <div class="row" style="margin-left:-10px;">
+                    <div class="alert alert-warning text-center">
+                        <p class="lead">Looks like you haven't requested any books!</p>
+                    </div>
+                </div>
+            {{/if}}
         </div>
     </div>
 </template>

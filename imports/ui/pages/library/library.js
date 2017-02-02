@@ -31,6 +31,9 @@ Template.library.helpers({
     shelves() {
         return Shelves.find({ owner: FlowRouter.getParam("_id"), profileOnly: {$exists: false}});
     },
+    noShelves() {
+        return Shelves.find({ owner: FlowRouter.getParam("_id"), profileOnly: {$exists: false}}).count() === 0;
+    },
     booksOnShelf() {
         return Books.find({ owner: FlowRouter.getParam("_id"), shelf: this._id });
     },

@@ -37,10 +37,13 @@
         {{/each}}
       {{else}}
         <div class="row">
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <h5>Looks like you don't have any conversations! Either initiate a conversation above, or a conversation will be initiated automatically when you accept a user's borrow request.</h5>
-            </div>
+          <div class="alert alert-warning text-center">
+              <p class="lead">Looks like you don't have any conversations! Try searching for some books above.</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="alert alert-warning text-center">
+              <p class="lead">When your book request is accepted, a conversation will begin between you and the book's owner.</p>
           </div>
         </div>
       {{/if}}

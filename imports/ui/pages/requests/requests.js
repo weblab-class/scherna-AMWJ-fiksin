@@ -13,8 +13,14 @@ Template.requests.helpers({
     requestsFromYou() {
         return BookRequests.find({ fromUserId: Meteor.userId() });
     },
+    anyRequestsFromYou() {
+        return BookRequests.find({ fromUserId: Meteor.userId() }).count() !== 0;
+    },
     requestsToYou() {
         return BookRequests.find({ toUserId: Meteor.userId(), priority: 0 });
+    },
+    anyRequestsToYou() {
+        return BookRequests.find({ toUserId: Meteor.userId() }).count() !== 0;
     },
     pathForLibrary() {
         return FlowRouter.path("App.library", { _id: Meteor.userId() });
