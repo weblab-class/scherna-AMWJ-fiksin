@@ -26,3 +26,17 @@
 	color:#d9534f;
 	transition: 0.3s;
 }
+
+.glyphicon-bookmark {
+	color:#777777;
+}
+
+.glyphicon-bookmark:hover {
+	color:#d9534f;
+	transition: 0.3s;
+}
+
+.menuItemText{
+	font-family: 'Nunito', sans-serif;
+	padding-left:5px;
+}
